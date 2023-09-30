@@ -30,6 +30,7 @@ public class ProjectileShooter : MonoBehaviour
     private float _minSpawnFrequency;
     private float _maxSpawnFrequency;
     private float _currentFrequency;
+    
     [SerializeField] private float _spawnFrequencyDiminution;
     
     
@@ -49,7 +50,12 @@ public class ProjectileShooter : MonoBehaviour
         Debug.Log(_currentFrequency);
         
         _elapsedTime += Time.deltaTime;
-        Debug.Log(Time.time);
+
+        if (Time.time % 5 == 0)
+        {
+            _minSpawnFrequency -= _spawnFrequencyDiminution;
+            _maxSpawnFrequency -= _spawnFrequencyDiminution;
+        }
         
         if (_elapsedTime >= _currentFrequency)
         {

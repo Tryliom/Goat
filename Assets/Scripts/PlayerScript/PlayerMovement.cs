@@ -39,6 +39,8 @@ public class PlayerMovement : MonoBehaviour
         // Apply force to the rigidbody
         _rb.velocity += new Vector3(_movementVelocity.x, 0, _movementVelocity.y);
 
+        //_rb.velocity = transform.forward * _stats.movementSpeed;
+
         // Limit the velocity
         if (_rb.velocity.magnitude > _stats.movementSpeed)
         {

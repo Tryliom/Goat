@@ -44,11 +44,11 @@ public class Projectile : MonoBehaviour
         _rb.velocity = _trajectory;
     }
 
-    protected virtual void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.GetComponent<Player>())
-        {
-            Destroy(gameObject);
-        }
-    }
+    // protected virtual void OnTriggerEnter(Collider other)
+    // {
+    //     if (other.gameObject.GetComponent<Player>())
+    //     {
+    //         Destroy(gameObject);
+    //     }
+    // }
 }

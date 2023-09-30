@@ -72,6 +72,11 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7218219468064906359, guid: 8bbb2b95a9c6b3d4881597ee01e7b9ec,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8bbb2b95a9c6b3d4881597ee01e7b9ec, type: 3}
 --- !u!1 &2642007282461305368 stripped
@@ -99,7 +104,6 @@ MonoBehaviour:
   playerLayerMask:
     serializedVersion: 2
     m_Bits: 8
-  bonusName: {fileID: 0}
   renderer: {fileID: 5186343531900642596}
 --- !u!23 &5186343531900642596 stripped
 MeshRenderer:

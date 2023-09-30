@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 2162592926309483479}
   - component: {fileID: 802000628}
   - component: {fileID: 1340758178}
+  - component: {fileID: 6188935020157541565}
   m_Layer: 2
   m_Name: Goat
   m_TagString: Player
@@ -132,7 +133,7 @@ Rigidbody:
   m_GameObject: {fileID: 2162592926309483456}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0.5
+  m_Drag: 6
   m_AngularDrag: 0.5
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -176,6 +177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7221b6f35c77554fb4054547d14c8ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _angularSpeed: 10
 --- !u!114 &2162592926309483479
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,7 +190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a26ff8c0ed918a4e8d4b5ef39622f5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 4
+  movementSpeed: 2
   maxSpeed: 8
   currentHealth: 100
   maxHealth: 100
@@ -214,6 +216,19 @@ FixedJoint:
   m_MassScale: 1
   m_ConnectedMassScale: 1
 --- !u!65 &1340758178
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2162592926309483456}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.47124958, y: 1.0234792, z: 1.4634624}
+  m_Center: {x: 0.0071451664, y: -0.45015228, z: -0.50424266}
+--- !u!65 &6188935020157541565
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

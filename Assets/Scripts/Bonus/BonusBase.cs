@@ -24,17 +24,25 @@ public abstract class BonusBase : MonoBehaviour
 
     public event Action<BonusBase> OnBonusDestroy;
 
-    public void OnBonusCollision()
+    private void OnTriggerEnter(Collider other)
     {
-        if (!_isCollected)
+        if (other.gameObject.GetComponent<Player>())
         {
-            Collider[] detectPlayer = Physics.OverlapSphere(this.gameObject.transform.position, _radiusDetectionSphere, playerLayerMask);
-            if (detectPlayer.Length != 0)
-            {
-                _isCollected = true;
-            }
+            _isCollected = true;
         }
     }
+
+    // public void OnBonusCollision()
+    // {
+    //     if (!_isCollected)
+    //     {
+    //         Collider[] detectPlayer = Physics.OverlapSphere(this.gameObject.transform.position, _radiusDetectionSphere, playerLayerMask);
+    //         if (detectPlayer.Length != 0)
+    //         {
+    //             _isCollected = true;
+    //         }
+    //     }
+    // }
 
     public abstract void BonusEffect();
 
@@ -53,7 +61,7 @@ public abstract class BonusBase : MonoBehaviour
     {
         if (!_isCollected)
         {
-            OnBonusCollision();
+            //OnBonusCollision();
             DestroyBonus();
         }
 

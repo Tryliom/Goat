@@ -28,7 +28,8 @@ public class ObstacleSpawner : MonoBehaviour
         time += Time.deltaTime;
         if (time > SpawnRate)
         {
-            Instantiate(ObstaclePrefab, new Vector3(Random.Range(xMin, xMax), 0, Random.Range(xMin, xMax)), Quaternion.identity);
+            Instantiate(ObstaclePrefab, new Vector3(Random.Range(xMin, xMax), 0, 
+                Random.Range(zMin, zMax)), Quaternion.identity);
             time = 0f;
         }
     }

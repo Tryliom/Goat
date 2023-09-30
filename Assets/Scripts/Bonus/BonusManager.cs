@@ -12,10 +12,18 @@ public class BonusManager : MonoBehaviour
 
     private bool _isAnObjectInGame = false;
     
+    private float xMin;
+    private float xMax;
+    private float zMin;
+    private float zMax;
+    
     // Start is called before the first frame update
     void Start()
     {
-        
+        xMin = -transform.localScale.x * 3;
+        xMax = transform.localScale.x * 3;
+        zMin = -transform.localScale.z * 3;
+        zMax = transform.localScale.z * 3;
     }
 
     // Update is called once per frame
@@ -32,7 +40,9 @@ public class BonusManager : MonoBehaviour
         {
             int rndIdx = Random.Range(0, _bonus.Count);
 
-            var bonus = Instantiate(_bonus[rndIdx].gameObject);
+            var rndPos = new Vector3(Random.Range(xMin, xMax), 0, Random.Range(zMin, zMax));
+            
+            var bonus = Instantiate(_bonus[rndIdx].gameObject, rndPos, Quaternion.identity);
 
             bonus.GetComponent<BonusBase>().OnBonusDestroy += UpdateObjectInGame;
 

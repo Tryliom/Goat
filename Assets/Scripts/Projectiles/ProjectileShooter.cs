@@ -27,26 +27,47 @@ public class ProjectileShooter : MonoBehaviour
     [Header("Spawn Frequency")]
     [SerializeField] private float _baseMinSpawnFrequency = 5f;
     [SerializeField] private float _baseMaxSpawnFrequency = 7f;
-    private float _minSpawnFrequency;
-    private float _maxSpawnFrequency;
-    private float _currentFrequency;
+    [SerializeField] private float _minSpawnFrequency = 1f;
+    [SerializeField] private float _maxSpawnFrequency = 3f;
     [SerializeField] private float _spawnFrequencyDiminution;
+    [SerializeField] private float _amountOfTimeToDiminuateFreq;
+    private float _lowerFrequency;
+    private float _higherFrequency;
+    private float _currentFrequency;
+
+    private bool MustDiminuateFrequency =>
+        _lowerFrequency > _minSpawnFrequency && _higherFrequency > _maxSpawnFrequency; 
     
     
     private float _elapsedTime;
-    private float _totalTime;
+    private float _diminTime;
 
     private void Awake()
     {
         _currentFrequency = Random.Range(_baseMinSpawnFrequency, _baseMaxSpawnFrequency);
-        _minSpawnFrequency = _baseMinSpawnFrequency;
-        _maxSpawnFrequency = _baseMaxSpawnFrequency;
+        _lowerFrequency = _baseMinSpawnFrequency;
+        _higherFrequency = _baseMaxSpawnFrequency;
     }
 
     // Update is called once per frame
     void Update()
     {
         _elapsedTime += Time.deltaTime;
+        _diminTime += Time.deltaTime;
+
+        if (_diminTime >= _amountOfTimeToDiminuateFreq && MustDiminuateFrequency)
+        {
+            _lowerFrequency -= _spawnFrequencyDiminution;
+            _higherFrequency -= _spawnFrequencyDiminution;
+
+            _diminTime = 0;
+        }
+
+        if (_lowerFrequency < _minSpawnFrequency || _higherFrequency < _maxSpawnFrequency)
+        {
+            _lowerFrequency = _minSpawnFrequency;
+            _higherFrequency = _maxSpawnFrequency;
+        }
         
         if (_elapsedTime >= _currentFrequency)
         {
@@ -69,7 +90,7 @@ public class ProjectileShooter : MonoBehaviour
 
             _elapsedTime = 0f;
 
-            _currentFrequency = Random.Range(_minSpawnFrequency, _maxSpawnFrequency);
+            _currentFrequency = Random.Range(_lowerFrequency, _higherFrequency);
         }
     }
 

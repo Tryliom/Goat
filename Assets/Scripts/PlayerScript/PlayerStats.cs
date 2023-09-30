@@ -8,6 +8,7 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] public float movementSpeed;
     [SerializeField] public float maxSpeed;
     [SerializeField] public int currentHealth;
+    [SerializeField] public int maxHealth;
 
     public static event Action<PlayerStats> OnDamageTaken;
     
@@ -28,6 +29,7 @@ public class PlayerStats : MonoBehaviour
         
         if (projRef)
         {
+            Debug.Log("yoooo");
             OnDamageTaken?.Invoke(this);
             currentHealth -= 20;
         }

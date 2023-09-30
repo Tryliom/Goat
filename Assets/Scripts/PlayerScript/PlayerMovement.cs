@@ -7,16 +7,17 @@ public class PlayerMovement : MonoBehaviour
 {
     [Header("Basic Movement")]
     private InputWrapper _inputs;
-    private Rigidbody _rb;
-    private Vector2 _movementVelocity;
+    private Rigidbody _rigidbody;
+    private Vector3 _movementVelocity;
     private PlayerStats _stats;
     private Animator _animator;
-
-
+    
+    [SerializeField] private float _angularSpeed = 10f;
+    
     private void Start()
     {
         _inputs = GetComponent<InputWrapper>();
-        _rb = GetComponent<Rigidbody>();
+        _rigidbody = GetComponent<Rigidbody>();
         _stats = GetComponent<PlayerStats>();
         _animator = GetComponentInChildren<Animator>();
     }
@@ -24,27 +25,33 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        _movementVelocity = _inputs.move * _stats.movementSpeed;
+        var inputValue = _inputs.move * _stats.movementSpeed;
+        
+        _movementVelocity = new Vector3(inputValue.x, 0, inputValue.y);
+        _movementVelocity = Quaternion.Euler(0, Camera.main.transform.eulerAngles.y, 0) * _movementVelocity;
         _animator.SetFloat("Velocity", _movementVelocity.magnitude);
-
-        Vector3 playerDirection = Vector3.right * _movementVelocity.x + Vector3.forward * _movementVelocity.y;
-        if (playerDirection.sqrMagnitude > 0.0f)
+            
+        var velocity = _rigidbody.velocity;
+        
+        velocity = new Vector3(velocity.x, 0, velocity.z).normalized;
+        
+        if (velocity.magnitude > 0.1f && _movementVelocity.normalized.magnitude > 0.1f)
         {
-            transform.rotation = Quaternion.LookRotation(playerDirection, Vector3.up);
+            var wantedRotation = Quaternion.LookRotation(velocity, Vector3.up);
+            
+            transform.rotation = Quaternion.Slerp(transform.rotation, wantedRotation, _angularSpeed * Time.deltaTime);
         }
     }
 
     private void FixedUpdate()
     {
         // Apply force to the rigidbody
-        _rb.velocity += new Vector3(_movementVelocity.x, 0, _movementVelocity.y);
-
-        //_rb.velocity = transform.forward * _stats.movementSpeed;
+        _rigidbody.velocity += _movementVelocity;
 
         // Limit the velocity
-        if (_rb.velocity.magnitude > _stats.movementSpeed)
+        if (_rigidbody.velocity.magnitude > _stats.maxSpeed)
         {
-            _rb.velocity = _rb.velocity.normalized * _stats.movementSpeed;
+            _rigidbody.velocity = _rigidbody.velocity.normalized * _stats.maxSpeed;
         }
     }
 }

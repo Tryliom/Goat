@@ -46,10 +46,7 @@ public class ProjectileShooter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(_currentFrequency);
-        
         _elapsedTime += Time.deltaTime;
-        Debug.Log(Time.time);
         
         if (_elapsedTime >= _currentFrequency)
         {

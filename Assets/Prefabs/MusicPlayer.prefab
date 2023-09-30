@@ -46,7 +46,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _audioSource: {fileID: 8495757227053439896}
-  _menu: {fileID: 0}
+  _audioData: {fileID: 11400000, guid: c108d44ba8d8f9043afb762ee1e46dbd, type: 2}
+  _menu: {fileID: 8300000, guid: 0ad4e20233b7552489e68b6aadaf79a1, type: 3}
   _game: {fileID: 0}
   _loose: {fileID: 0}
 --- !u!82 &8495757227053439896

@@ -5,7 +5,7 @@ using UnityEngine.Serialization;
 
 public enum SoundType
 {
-    None, ProjectileHit, GoatHurt, GoatWalk
+    None, ProjectileHit, GoatHurt, GoatWalk, ButtonClick
 }
 
 [Serializable]
@@ -18,6 +18,8 @@ public class SoundClip
 
 public class SoundPlayer : MonoBehaviour
 {
+    [SerializeField] private AudioData _audioData;
+    
     [Header("Sounds")]
     [SerializeField] private List<SoundClip> _sounds;
     [SerializeField] private AudioSource _audioSource;
@@ -45,13 +47,12 @@ public class SoundPlayer : MonoBehaviour
     
     public void PlaySound(SoundType soundType)
     {
-        if (soundType == SoundType.None || _soundTimers[soundType] > 0) return;
-
         var soundClip = _sounds.Find(s => s.SoundType == soundType);
         
         if (soundClip == null) return;
+        if (soundType == SoundType.None || _soundTimers[soundType] > 0) return;
 
-        _audioSource.PlayOneShot(soundClip.AudioClip, soundClip.Volume);
+        _audioSource.PlayOneShot(soundClip.AudioClip, soundClip.Volume * _audioData.GetSoundVolume());
         
         _soundTimers[soundType] = 0.1f;
     }

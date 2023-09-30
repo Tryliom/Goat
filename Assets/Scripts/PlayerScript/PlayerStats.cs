@@ -29,9 +29,9 @@ public class PlayerStats : MonoBehaviour
 
         if (projRef)
         {
-            Debug.Log("yoooo");
             OnDamageTaken?.Invoke(this);
-            currentHealth -= 5;
+            currentHealth -= projRef.Damage;
+            Debug.Log(currentHealth);
             Destroy(projRef.gameObject);
         }
     }

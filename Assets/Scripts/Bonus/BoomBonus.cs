@@ -21,8 +21,8 @@ public class BoomBonus : BonusBase
         }
     }
 
-    void Update()
+    protected override void Update()
     {
-        
+        base.Update();
     }
 }

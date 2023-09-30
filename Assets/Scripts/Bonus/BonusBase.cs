@@ -24,67 +24,43 @@ public abstract class BonusBase : MonoBehaviour
 
     public event Action<BonusBase> OnBonusDestroy;
 
+    public abstract void BonusEffect();
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.GetComponent<Player>())
         {
+            BonusEffect();
+            renderer.enabled = false;
             _isCollected = true;
         }
     }
-
-    // public void OnBonusCollision()
-    // {
-    //     if (!_isCollected)
-    //     {
-    //         Collider[] detectPlayer = Physics.OverlapSphere(this.gameObject.transform.position, _radiusDetectionSphere, playerLayerMask);
-    //         if (detectPlayer.Length != 0)
-    //         {
-    //             _isCollected = true;
-    //         }
-    //     }
-    // }
-
-    public abstract void BonusEffect();
-
-    public void DestroyBonus()
+    
+    protected virtual void Update()
     {
-        if (_timerDurationBonus >= bonusCollectableTimeMax)
-        {
-            //Destroy(this.gameObject);
-            OnBonusDestroy?.Invoke(this);
-        }
-    }
-
-
-
-    void Update()
-    {
+        Debug.Log(_timerDurationBonus + " " + _timerDurationBonusEffect);
+        
         if (!_isCollected)
         {
-            //OnBonusCollision();
-            DestroyBonus();
+            _timerDurationBonus += Time.deltaTime;
         }
-
+        
+        if (_timerDurationBonus >= bonusCollectableTimeMax)
+        {
+            OnBonusDestroy?.Invoke(this);
+        }
         
         if (_isCollected)
         {
-            HideVisualsElements();
-            BonusEffect();
             _timerDurationBonusEffect += Time.deltaTime;
             if (_timerDurationBonusEffect >= bonusEffectDuration)
             {
+                Debug.Log("Invoke destroy");
                 OnBonusDestroy?.Invoke(this);
             }
         }
-
     }
-
-    private void HideVisualsElements()
-    {
-        renderer.enabled = false;
-        //bonusName.enabled = false;
-    }
-
+    
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;

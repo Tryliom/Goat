@@ -35,6 +35,9 @@ public class Menu : MonoBehaviour
         _sliderSoundAudio.value = _audioData.SoundVolume;
         
         _musicPlayer.PlayMenu();
+        
+        DisableAll();
+        _mainMenu.SetActive(true);
     }
 
     public void ToGame()
@@ -105,18 +108,18 @@ public class Menu : MonoBehaviour
         _settingsMenu.SetActive(false);
         _creditsMenu.SetActive(false);
     }
-    public void OnGlobalAudioChange(float value)
+    public void OnGlobalAudioChange()
     {
-        _audioData.GlobalVolume = value;
+        _audioData.GlobalVolume = _sliderGlobalAudio.value;
     }
     
-    public void OnMusicAudioChange(float value)
+    public void OnMusicAudioChange()
     {
-        _audioData.MusicVolume = value;
+        _audioData.MusicVolume = _sliderMusicAudio.value;
     }
     
-    public void OnSoundAudioChange(float value)
+    public void OnSoundAudioChange()
     {
-        _audioData.SoundVolume = value;
+        _audioData.SoundVolume = _sliderSoundAudio.value;
     }
 }

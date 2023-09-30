@@ -30,6 +30,7 @@ public class ProjectileShooter : MonoBehaviour
     [SerializeField] private float _minSpawnFrequency = 1f;
     [SerializeField] private float _maxSpawnFrequency = 3f;
     [SerializeField] private float _spawnFrequencyDiminution;
+    [SerializeField] private float _amountOfTimeToDiminuateFreq;
     private float _lowerFrequency;
     private float _higherFrequency;
     private float _currentFrequency;
@@ -56,7 +57,7 @@ public class ProjectileShooter : MonoBehaviour
         _elapsedTime += Time.deltaTime;
         _diminTime += Time.deltaTime;
 
-        if (_diminTime >= 5f && MustDiminuateFrequency)
+        if (_diminTime >= _amountOfTimeToDiminuateFreq && MustDiminuateFrequency)
         {
             _lowerFrequency -= _spawnFrequencyDiminution;
             _higherFrequency -= _spawnFrequencyDiminution;

@@ -23,7 +23,7 @@ public abstract class BonusBase : MonoBehaviour
     private float _timerDurationBonusEffect = 0;
     private bool _isCollected = false;
 
-    public event Action<BonusBase> OnEffectEnd;
+    public event Action<BonusBase> OnBonusDestroy;
 
     public void OnBonusCollision()
     {
@@ -32,7 +32,6 @@ public abstract class BonusBase : MonoBehaviour
             Collider[] detectPlayer = Physics.OverlapSphere(this.gameObject.transform.position, _radiusDetectionSphere, playerLayerMask);
             if (detectPlayer.Length != 0)
             {
-                Debug.Log("GetBonus");
                 _isCollected = true;
             }
         }
@@ -45,7 +44,7 @@ public abstract class BonusBase : MonoBehaviour
         if (_timerDurationBonus >= bonusCollectableTimeMax)
         {
             //Destroy(this.gameObject);
-            OnEffectEnd?.Invoke(this);
+            OnBonusDestroy?.Invoke(this);
         }
     }
 
@@ -67,7 +66,7 @@ public abstract class BonusBase : MonoBehaviour
             _timerDurationBonusEffect += Time.deltaTime;
             if (_timerDurationBonusEffect >= bonusEffectDuration)
             {
-                Destroy(this.gameObject);
+                OnBonusDestroy?.Invoke(this);
             }
         }
 

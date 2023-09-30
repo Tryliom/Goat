@@ -34,7 +34,7 @@ public class BonusManager : MonoBehaviour
 
             var bonus = Instantiate(_bonus[rndIdx].gameObject);
 
-            bonus.GetComponent<BonusBase>().OnEffectEnd += UpdateObjectInGame;
+            bonus.GetComponent<BonusBase>().OnBonusDestroy += UpdateObjectInGame;
 
             _elapsedTime = 0f;
 

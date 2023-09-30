@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: CACA
-  bonusEffectDuration: 1
+  bonusEffectDuration: 3.49
   bonusCollectableTimeMax: 2
   _radiusDetectionSphere: 1
   playerLayerMask:

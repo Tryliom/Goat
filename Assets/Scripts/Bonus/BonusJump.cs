@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.ParticleSystem;
 
-public class BonusBoom : BonusBase
+public class BonusJump : BonusBase
 {
     private Rigidbody _rb;
     private bool canJump;
@@ -15,9 +15,9 @@ public class BonusBoom : BonusBase
     {
         canJump = true;
         _rb = FindObjectOfType<PlayerStats>().GetComponent<Rigidbody>();
-        bonusName.text = name;
-        renderer = GetComponent<SpriteRenderer>();
-        renderer.sprite = bonusIcon;
+        //bonusName.text = name;
+        //renderer = GetComponent<SpriteRenderer>();
+        //renderer.sprite = bonusIcon;
     }
 
 

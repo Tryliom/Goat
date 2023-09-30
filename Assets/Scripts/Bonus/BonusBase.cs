@@ -13,11 +13,10 @@ public abstract class BonusBase : MonoBehaviour
     public float bonusCollectableTimeMax;
     public float _radiusDetectionSphere;
     public LayerMask playerLayerMask;
-    public Sprite bonusIcon;
-    public TextMeshProUGUI bonusName;
-
-
-    public SpriteRenderer renderer;
+    //public Sprite bonusIcon;
+    //public TextMeshProUGUI bonusName;
+    
+    public MeshRenderer renderer;
 
     private float _timerDurationBonus = 0;
     private float _timerDurationBonusEffect = 0;
@@ -75,7 +74,7 @@ public abstract class BonusBase : MonoBehaviour
     private void HideVisualsElements()
     {
         renderer.enabled = false;
-        bonusName.enabled = false;
+        //bonusName.enabled = false;
     }
 
     private void OnDrawGizmosSelected()

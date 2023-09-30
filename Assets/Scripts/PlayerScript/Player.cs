@@ -2,13 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerStats : MonoBehaviour
+public class Player : MonoBehaviour
 {
-    [SerializeField] public float movementSpeed;
-    [SerializeField] public float maxSpeed;
-    [SerializeField] public int currentHealth;
-
-
+    // Start is called before the first frame update
     void Start()
     {
         

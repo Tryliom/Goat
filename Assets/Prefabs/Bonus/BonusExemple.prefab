@@ -98,9 +98,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffbe9f43ef1cd2a44b6dfb548ee93750, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: CACA
-  bonusEffectDuration: 3.49
-  bonusCollectableTimeMax: 2
+  name: Boom
+  bonusEffectDuration: 2
+  bonusCollectableTimeMax: 10
   _radiusDetectionSphere: 1
   playerLayerMask:
     serializedVersion: 2

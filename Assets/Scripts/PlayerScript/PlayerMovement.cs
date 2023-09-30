@@ -12,21 +12,34 @@ public class PlayerMovement : MonoBehaviour
     private PlayerStats _stats;
 
 
-    void Start()
+    private void Start()
     {
         _inputs = GetComponent<InputWrapper>();
         _rb = GetComponent<Rigidbody>();
         _stats = GetComponent<PlayerStats>();
+        
+        // Ignore collisions with his children
+        foreach (Transform child in transform)
+        {
+            Physics.IgnoreCollision(child.GetComponent<Collider>(), GetComponent<Collider>());
+        }
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         _movementVelocity = _inputs.move * _stats.movementSpeed;
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
-        _rb.velocity = new Vector3(_movementVelocity.x, 0, _movementVelocity.y);
+        // Apply force to the rigidbody
+        _rb.velocity += new Vector3(_movementVelocity.x, 0, _movementVelocity.y);
+        
+        // Limit the velocity
+        if (_rb.velocity.magnitude > _stats.movementSpeed)
+        {
+            _rb.velocity = _rb.velocity.normalized * _stats.movementSpeed;
+        }
     }
 }

@@ -34,7 +34,7 @@ public class PlayerStats : MonoBehaviour
     {
         Timer += Time.deltaTime;
         scoreTimer += Time.deltaTime;
-        timeText.text = "Time: " + Timer.ToString("F2");
+        timeText.text = "Time: " + Timer.ToString("F0");
         if (scoreTimer >= 1.2f)
         {
             Score += 100;

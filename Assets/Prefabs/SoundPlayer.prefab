@@ -45,10 +45,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82f8ef4672e043f7a1720ff432c50da1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _audioData: {fileID: 11400000, guid: c108d44ba8d8f9043afb762ee1e46dbd, type: 2}
   _sounds:
   - SoundType: 3
     AudioClip: {fileID: 8300000, guid: a37dfd093a04dc54b8e86ae2679ba66b, type: 3}
     Volume: 0.3
+  - SoundType: 4
+    AudioClip: {fileID: 8300000, guid: 6ab18d79a3dd5964180d87e13ca06f1e, type: 3}
+    Volume: 1
   _audioSource: {fileID: 8495757227053439896}
 --- !u!82 &8495757227053439896
 AudioSource:

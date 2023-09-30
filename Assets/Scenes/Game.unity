@@ -38,11 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-<<<<<<< HEAD
-  m_IndirectSpecularColor: {r: 2157.8467, g: 2262.3926, b: 3286.168, a: 1}
-=======
   m_IndirectSpecularColor: {r: 2182.247, g: 2315.455, b: 3439.8047, a: 1}
->>>>>>> ae0372f565bef85fe66852afbaff291c6cd2c203
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -713,7 +709,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-<<<<<<< HEAD
 --- !u!1 &555603459 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 689aa43923d1ef7459b17008798b3050,
@@ -723,15 +718,10 @@ GameObject:
 --- !u!95 &555603461
 Animator:
   serializedVersion: 4
-=======
---- !u!43 &576118649
-Mesh:
->>>>>>> ae0372f565bef85fe66852afbaff291c6cd2c203
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
   m_GameObject: {fileID: 555603459}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
@@ -745,7 +735,6 @@ Mesh:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
-=======
   m_Name: 
   serializedVersion: 10
   m_SubMeshes:
@@ -904,7 +893,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
->>>>>>> ae0372f565bef85fe66852afbaff291c6cd2c203
 --- !u!1001 &616237483
 PrefabInstance:
   m_ObjectHideFlags: 0

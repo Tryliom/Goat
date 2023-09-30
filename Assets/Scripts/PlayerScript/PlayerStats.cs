@@ -11,7 +11,12 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] public int currentHealth;
     [SerializeField] public int maxHealth;
 
-    public static event Action<PlayerStats> OnDamageTaken;
+    [SerializeField] private int _healthRegenAmount;
+    [SerializeField] private int _healthRegenFrequency;
+
+    private float _healthTimer;
+    
+    public static event Action<PlayerStats> OnHealthChanging;
 
     public float Timer = 0f;
     public float Score = 0;
@@ -36,6 +41,15 @@ public class PlayerStats : MonoBehaviour
             scoreTimer = 0;
         }
         scoreText.text = "Score: " + Score.ToString("000000");
+
+        _healthTimer += Time.deltaTime;
+
+        if (_healthTimer >= _healthRegenFrequency)
+        {
+            currentHealth += _healthRegenAmount;
+            OnHealthChanging?.Invoke(this);
+            _healthTimer = 0f;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -44,8 +58,8 @@ public class PlayerStats : MonoBehaviour
 
         if (projRef)
         {
-            OnDamageTaken?.Invoke(this);
             currentHealth -= projRef.Damage;
+            OnHealthChanging?.Invoke(this);
             Destroy(projRef.gameObject);
         }
     }

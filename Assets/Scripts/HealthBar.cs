@@ -13,15 +13,12 @@ public class HealthBar : MonoBehaviour
     void Start()
     {
         _playerStats = FindObjectOfType<PlayerStats>();
-        PlayerStats.OnDamageTaken += UpdateHealthBar;
+        PlayerStats.OnHealthChanging += UpdateHealthBar;
     }
 
     private void UpdateHealthBar(PlayerStats playerStats)
     {
-        
-        
         _image.fillAmount = (float)playerStats.currentHealth / (float)playerStats.maxHealth;
-        Debug.Log(_image.fillAmount);
     }
     
     // Update is called once per frame

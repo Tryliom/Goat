@@ -204,7 +204,7 @@ PrefabInstance:
     - target: {fileID: 5930716488704933034, guid: 6d8a05009defde94ab929dd8a6ca113b,
         type: 3}
       propertyPath: _bonusSpawnFrequency
-      value: 10
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d8a05009defde94ab929dd8a6ca113b, type: 3}
@@ -835,6 +835,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BonusExemple
       objectReference: {fileID: 0}
+    - target: {fileID: 1799555842305431359, guid: c96d9ea3b108de243968e35cca55e0e4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1799555843294235188, guid: c96d9ea3b108de243968e35cca55e0e4,
         type: 3}
       propertyPath: m_fontAsset
@@ -1041,6 +1046,10 @@ MonoBehaviour:
   maxSpeed: 8
   currentHealth: 0
   maxHealth: 0
+  Timer: 0
+  Score: 0
+  scoreText: {fileID: 0}
+  timeText: {fileID: 0}
 --- !u!114 &2847428206510603339
 MonoBehaviour:
   m_ObjectHideFlags: 0

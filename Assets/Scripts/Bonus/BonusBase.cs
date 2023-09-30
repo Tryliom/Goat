@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -22,6 +23,7 @@ public abstract class BonusBase : MonoBehaviour
     private float _timerDurationBonusEffect = 0;
     private bool _isCollected = false;
 
+    public event Action<BonusBase> OnEffectEnd;
 
     public void OnBonusCollision()
     {
@@ -42,7 +44,8 @@ public abstract class BonusBase : MonoBehaviour
     {
         if (_timerDurationBonus >= bonusCollectableTimeMax)
         {
-            Destroy(this.gameObject);
+            //Destroy(this.gameObject);
+            OnEffectEnd?.Invoke(this);
         }
     }
 

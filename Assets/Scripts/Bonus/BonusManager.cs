@@ -21,6 +21,8 @@ public class BonusManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(_isAnObjectInGame);
+        
         if (!_isAnObjectInGame)
         {
             _elapsedTime += Time.deltaTime;
@@ -30,11 +32,20 @@ public class BonusManager : MonoBehaviour
         {
             int rndIdx = Random.Range(0, _bonus.Count);
 
-            Instantiate(_bonus[rndIdx].gameObject);
+            var bonus = Instantiate(_bonus[rndIdx].gameObject);
+
+            bonus.GetComponent<BonusBase>().OnEffectEnd += UpdateObjectInGame;
 
             _elapsedTime = 0f;
 
             _isAnObjectInGame = true;
         }
+    }
+
+    private void UpdateObjectInGame(BonusBase bonus)
+    {
+        _isAnObjectInGame = false;
+        
+        Destroy(bonus.gameObject);
     }
 }

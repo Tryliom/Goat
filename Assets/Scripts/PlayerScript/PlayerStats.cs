@@ -42,13 +42,21 @@ public class PlayerStats : MonoBehaviour
         }
         scoreText.text = "Score: " + Score.ToString("000000");
 
-        _healthTimer += Time.deltaTime;
-
-        if (_healthTimer >= _healthRegenFrequency)
+        if (currentHealth < maxHealth)
+        {
+            _healthTimer += Time.deltaTime;
+        }
+        
+        if (_healthTimer >= _healthRegenFrequency && currentHealth < maxHealth)
         {
             currentHealth += _healthRegenAmount;
             OnHealthChanging?.Invoke(this);
             _healthTimer = 0f;
+        }
+
+        if (currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
         }
     }
 

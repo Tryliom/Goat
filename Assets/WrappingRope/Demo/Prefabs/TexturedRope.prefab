@@ -53,11 +53,11 @@ MonoBehaviour:
   _material: {fileID: 0}
   _frontEnd: {fileID: 100004}
   _backEnd: {fileID: 100002}
-  Threshold: 0.13
-  WrapDistance: 0.08
+  Threshold: 1.18
+  WrapDistance: 0.001
   _pieceInstance: {fileID: 100000, guid: cd07515d41031144e821af499ea0ca7f, type: 3}
   BendInstance: {fileID: 191110, guid: 667825f1cf5b12548bffd0d0c415d028, type: 3}
-  _width: 0.24
+  _width: 0.001
   ExtendAxis: 2
   TexturingMode: 3
   UVLocation: 3
@@ -73,7 +73,7 @@ MonoBehaviour:
   _frontPiece: {fileID: 8679316515825088231}
   _backPiece: {fileID: 8679316515825088231}
   _pieceInstanceSize: {x: 0.020000001, y: 0.020000001, z: 0.030000001}
-  _pieceInstanceRatio: {x: 11.999999, y: 11.999999, z: 33.333332}
+  _pieceInstanceRatio: {x: 0.049999997, y: 0.049999997, z: 33.333332}
   _bendInstanceRatio: 0.24
   _initProfile: []
   _workProfile: []
@@ -444,9 +444,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2368959589217138075}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.374374, y: 23.83589, z: -22.90672}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0.0000012694449, y: 0.020388411, z: -0.0000622501, w: 0.99979216}
+  m_LocalPosition: {x: -1.3741219, y: 24.719643, z: -25.379887}
+  m_LocalScale: {x: 304.0396, y: 0.049999997, z: 0.033333335}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 400000}

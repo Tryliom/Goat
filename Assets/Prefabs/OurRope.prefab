@@ -125,7 +125,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 145026}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.74, y: 1, z: -0.01}
+  m_LocalPosition: {x: 2.7460399, y: 0.97901845, z: -0.00973773}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -209,7 +209,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!1 &172410
 GameObject:
@@ -274,7 +274,7 @@ MonoBehaviour:
   UVLocation: 3
   Tiling: 1
   _anchoringMode: 2
-  ElasticModulus: 0.001
+  ElasticModulus: 1.96
   _ignoreLayer: Ignore Raycast
   IgnoreLayer:
     serializedVersion: 2
@@ -389,8 +389,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6735453304012770348}
-  m_LocalRotation: {x: -0.09991463, y: 0.70126224, z: 0.10027996, w: 0.6987076}
-  m_LocalPosition: {x: 1.37, y: 0.6, z: -0.005}
+  m_LocalRotation: {x: -0.09724678, y: 0.7016045, z: 0.09759224, w: 0.6991209}
+  m_LocalPosition: {x: 1.3730199, y: 0.58950925, z: -0.004868865}
   m_LocalScale: {x: 2.9999998, y: 2.9999998, z: 95.14725}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -484,14 +484,14 @@ MonoBehaviour:
   FrontBandPoint:
     Origin: {x: 0, y: 0, z: 0}
     LocalShift: {x: 0, y: 0, z: 0}
-    PositionInWorldSpace: {x: 2.74, y: 1, z: -0.01}
+    PositionInWorldSpace: {x: 2.7460399, y: 0.97901845, z: -0.00973773}
     Parent: {fileID: 145026}
   BackBandPoint:
     Origin: {x: 0, y: 0, z: 0}
     LocalShift: {x: 0, y: 0, z: 0}
     PositionInWorldSpace: {x: 0, y: 0.2, z: 0}
     Parent: {fileID: 129056}
-  PrevFrontBandPoint: {x: 2.74, y: 1, z: -0.01}
+  PrevFrontBandPoint: {x: 2.7460399, y: 0.97901845, z: -0.00973773}
   PrevBackBandPoint: {x: 0, y: 0.2, z: 0}
   _rope: {fileID: 11438412}
   _length: 2.8544176

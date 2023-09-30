@@ -46,7 +46,6 @@ public class PlayerStats : MonoBehaviour
         {
             OnDamageTaken?.Invoke(this);
             currentHealth -= projRef.Damage;
-            Debug.Log(currentHealth);
             Destroy(projRef.gameObject);
         }
     }

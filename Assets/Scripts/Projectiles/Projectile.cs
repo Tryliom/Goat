@@ -9,13 +9,17 @@ public class Projectile : MonoBehaviour
     protected Rigidbody _rb;
 
     [SerializeField] protected float _speed = 5f;
+    [SerializeField] protected int _damage;
+    
     protected Vector3 _trajectory;
 
     protected Vector3 _targetPosition;
 
     [SerializeField] protected float _lifeTime = 3f;
     private float _livingTime = 0f;
-    
+
+    public int Damage => _damage;
+
     protected virtual void Awake()
     {
         _transform = GetComponent<Transform>();

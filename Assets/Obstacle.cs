@@ -18,7 +18,7 @@ public class Obstacle : MonoBehaviour
         targetScale = new Vector3(originalScale.x, originalScale.y + 1, originalScale.z);
         originalPosition = transform.position;
         targetPosition = new Vector3(originalPosition.x, originalPosition.y + 1, originalPosition.z);
-        Debug.Log(originalScale);
+        
         StartCoroutine(AnimateAppearance());
     }
 

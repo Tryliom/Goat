@@ -20,7 +20,6 @@ public class ProjectileShooter : MonoBehaviour
     [SerializeField] private float _burstProjFrequency = 0.4f;
 
     [SerializeField] private int _burstProjNbr = 3;
-    private int _currentBurstProjNbr = 0;
 
     private float _elapsedTime;
 
@@ -31,9 +30,7 @@ public class ProjectileShooter : MonoBehaviour
 
         if (_elapsedTime >= _spawnFrequency)
         {
-            int projType = Random.Range(2, 3);
-
-            Debug.Log(projType);
+            int projType = Random.Range(0, (int)ProjectileType.Count);
 
             switch (projType)
             {
@@ -47,7 +44,6 @@ public class ProjectileShooter : MonoBehaviour
                     Instantiate(_seekerHeadProj.gameObject, transform.position, Quaternion.identity);
                     break;
                 default:
-                    Debug.Log("No Proj");
                     break;
             }
 
@@ -60,7 +56,6 @@ public class ProjectileShooter : MonoBehaviour
         for (int i = 0; i < _burstProjNbr; i++)
         {
             Instantiate(_burstProj.gameObject, transform.position, Quaternion.identity);
-            Debug.Log("BURST");
             yield return new WaitForSeconds(_burstProjFrequency);
         }
     }

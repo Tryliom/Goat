@@ -19,6 +19,9 @@ public class HealthBar : MonoBehaviour
     private void UpdateHealthBar(PlayerStats playerStats)
     {
         Debug.Log("DAMAGE");
+        
+        
+        
         _image.fillAmount = playerStats.currentHealth / playerStats.maxHealth;
     }
     

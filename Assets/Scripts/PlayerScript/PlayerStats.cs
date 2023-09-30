@@ -11,27 +11,28 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] public int maxHealth;
 
     public static event Action<PlayerStats> OnDamageTaken;
-    
+
     void Start()
     {
-        
+        currentHealth = maxHealth;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
         Projectile projRef = other.gameObject.GetComponent<Projectile>();
-        
+
         if (projRef)
         {
             Debug.Log("yoooo");
             OnDamageTaken?.Invoke(this);
-            currentHealth -= 20;
+            currentHealth -= 5;
+            Destroy(projRef.gameObject);
         }
     }
 }

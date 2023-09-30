@@ -714,6 +714,12 @@ Material:
     - _Color: {r: 0.23921569, g: 0.23921569, b: 0.23921569, a: 1}
     - _SpecColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
+--- !u!54 &349011184 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 1422820520256411065, guid: ac9a49d7def891b4ab9c2f3f0da94b31,
+    type: 3}
+  m_PrefabInstance: {fileID: 932865235}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &370887543
 GameObject:
   m_ObjectHideFlags: 0
@@ -863,6 +869,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 492814, guid: 673f7b5ca5056f3459b16b0beb49f3bc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.224
+      objectReference: {fileID: 0}
+    - target: {fileID: 11438412, guid: 673f7b5ca5056f3459b16b0beb49f3bc, type: 3}
+      propertyPath: Threshold
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 11438412, guid: 673f7b5ca5056f3459b16b0beb49f3bc, type: 3}
+      propertyPath: MaxPieceCount
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 11438412, guid: 673f7b5ca5056f3459b16b0beb49f3bc, type: 3}
+      propertyPath: ElasticModulus
+      value: 1.96
+      objectReference: {fileID: 0}
     - target: {fileID: 503555143, guid: 673f7b5ca5056f3459b16b0beb49f3bc, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -940,10 +962,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 932865247, guid: ac9a49d7def891b4ab9c2f3f0da94b31, type: 3}
+    - target: {fileID: 674921879920450910, guid: ac9a49d7def891b4ab9c2f3f0da94b31,
+        type: 3}
       propertyPath: m_ConnectedBody
       value: 
       objectReference: {fileID: 388024241}
+    - target: {fileID: 1422820520256411065, guid: ac9a49d7def891b4ab9c2f3f0da94b31,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1985163979736170870, guid: ac9a49d7def891b4ab9c2f3f0da94b31,
         type: 3}
       propertyPath: _ropeLink

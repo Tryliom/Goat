@@ -17,12 +17,6 @@ public class PlayerMovement : MonoBehaviour
         _inputs = GetComponent<InputWrapper>();
         _rb = GetComponent<Rigidbody>();
         _stats = GetComponent<PlayerStats>();
-        
-        // Ignore collisions with his children
-        foreach (Transform child in transform)
-        {
-            Physics.IgnoreCollision(child.GetComponent<Collider>(), GetComponent<Collider>());
-        }
     }
 
     // Update is called once per frame

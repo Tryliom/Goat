@@ -89,9 +89,6 @@ public class ProjectileShooter : MonoBehaviour
             var farPosition = GetRandomPositionAroundCenter();
             var targetPosition = Vector3.Lerp(farPosition, _center.position, (_spawnRadius - _attackRadius) / _spawnRadius);
             var enemy = Instantiate(_enemyPrefab.gameObject, farPosition, Quaternion.identity).GetComponent<Enemy>();
-            
-            enemy.Init(farPosition, targetPosition);
-            enemy.SetOnReachedTarget(ShootFromEnemy);
 
             _elapsedTime = 0f;
 
@@ -123,14 +120,12 @@ public class ProjectileShooter : MonoBehaviour
         {
             case (int) ProjectileType.Linear:
                 Instantiate(_linearProj.gameObject, enemy.transform.position, Quaternion.identity);
-                enemy.GoBack();
                 break;
             case (int) ProjectileType.Burst:
                 StartCoroutine(SpawnBurstProjectilesWithCooldown(enemy));
                 break;
             case (int) ProjectileType.SeekerHead:
                 Instantiate(_seekerHeadProj.gameObject, enemy.transform.position, Quaternion.identity);
-                enemy.GoBack();
                 break;
             default:
                 break;
@@ -144,7 +139,5 @@ public class ProjectileShooter : MonoBehaviour
             Instantiate(_burstProjectiles[i], enemy.transform.position, Quaternion.identity);
             yield return new WaitForSeconds(_burstProjFrequency);
         }
-        
-        enemy.GoBack();
     }
 }

@@ -1,5 +1,11 @@
 using UnityEngine;
 
+public enum ProjectileType
+{
+    Chair,
+    Bird
+}
+
 public class Projectile : MonoBehaviour
 {
     protected Transform _transform;
@@ -20,10 +26,14 @@ public class Projectile : MonoBehaviour
     //
     public int Damage => _damage;
 
+    protected ProjectileType _projectileType;
+    private SoundPlayer _soundPlayer;
+
     protected virtual void Awake()
     {
         _transform = GetComponent<Transform>();
         _rb = GetComponent<Rigidbody>();
+        _soundPlayer = FindObjectOfType<SoundPlayer>();
     }
 
     // Start is called before the first frame update
@@ -60,6 +70,16 @@ public class Projectile : MonoBehaviour
     {
         if (other.gameObject.GetComponent<Obstacle>())
         {
+            switch (_projectileType)
+            {
+                case ProjectileType.Chair:
+                    _soundPlayer.PlaySound(SoundType.BreakChair);
+                    break;
+                case ProjectileType.Bird:
+                    _soundPlayer.PlaySound(SoundType.BreakBird);
+                    break;
+            }
+            
             Destroy(gameObject);
         }
     }

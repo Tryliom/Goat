@@ -11,6 +11,7 @@ public class SeekerHeadProj : Projectile
     {
         base.Awake();
         _playerRef = FindObjectOfType<Player>();
+        _projectileType = ProjectileType.Bird;
     }
 
     protected override void Update()

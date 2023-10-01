@@ -19,6 +19,8 @@ public class LinearProj : Projectile
         Vector3 direction = selfToPlayer.normalized;
 
         _trajectory = direction * _speed;
+        
+        _projectileType = ProjectileType.Chair;
     }
 
     protected override void Update()

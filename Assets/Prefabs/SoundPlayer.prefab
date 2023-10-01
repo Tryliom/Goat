@@ -82,7 +82,7 @@ MonoBehaviour:
     Volume: 2
   - SoundType: 12
     AudioClip: {fileID: 8300000, guid: 59e6fe371c543974abde27866707b51b, type: 3}
-    Volume: 1
+    Volume: 2
   _audioSource: {fileID: 8495757227053439896}
 --- !u!82 &8495757227053439896
 AudioSource:

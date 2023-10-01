@@ -14,6 +14,8 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private int _healthRegenAmount;
     [SerializeField] private int _healthRegenFrequency;
 
+    [SerializeField] private ParticleSystem _onHitParticleSystem;
+
     private float _healthTimer;
 
     public static event Action<PlayerStats> OnHealthChanging;
@@ -88,6 +90,7 @@ public class PlayerStats : MonoBehaviour
             else
             {
                 UpdateHealth(-projRef.Damage);
+                _onHitParticleSystem.Play();
             }
 
             Destroy(projRef.gameObject);

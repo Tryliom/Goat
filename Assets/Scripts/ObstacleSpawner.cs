@@ -16,10 +16,10 @@ public class ObstacleSpawner : MonoBehaviour
 
     void Start()
     {
-        xMin = -transform.localScale.x * 3;
-        xMax = transform.localScale.x * 3;
-        zMin = -transform.localScale.z * 3;
-        zMax = transform.localScale.z * 3;
+        xMin = -transform.localScale.x * 4;
+        xMax = transform.localScale.x * 4;
+        zMin = -transform.localScale.z * 4;
+        zMax = transform.localScale.z * 4;
     }
 
     // Update is called once per frame
@@ -28,8 +28,9 @@ public class ObstacleSpawner : MonoBehaviour
         time += Time.deltaTime;
         if (time > SpawnRate)
         {
-            Instantiate(ObstaclePrefab, new Vector3(Random.Range(xMin, xMax), 0, 
-                Random.Range(zMin, zMax)), Quaternion.identity);
+            Obstacle obs = Instantiate(ObstaclePrefab, new Vector3(Random.Range(xMin, xMax), 0, Random.Range(zMin, zMax)), Quaternion.identity).GetComponent<Obstacle>();
+            obs.StayTime = Random.Range(2f, 5f);
+            obs.AppearTime = Random.Range(0.5f, 1.5f);
             time = 0f;
         }
     }

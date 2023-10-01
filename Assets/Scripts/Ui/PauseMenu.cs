@@ -50,6 +50,7 @@ public class PauseMenu : MonoBehaviour
 
     public void ToGame()
     {
+        Debug.Log("Back to game");
         if (_disableInput) return;
         
         _disableInput = true;

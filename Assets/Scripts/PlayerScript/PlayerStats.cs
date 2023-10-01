@@ -10,7 +10,7 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] public float maxSpeed;
     [SerializeField] public int currentHealth;
     [SerializeField] public int maxHealth;
-
+    [SerializeField] private GameObject _shieldObject;
     [SerializeField] private int _healthRegenAmount;
     [SerializeField] private int _healthRegenFrequency;
 
@@ -89,6 +89,16 @@ public class PlayerStats : MonoBehaviour
                 _ropeCtrRef.CurrentMaxLength /= ExtendRopeBonus.RopeExtensionFactor;
                 _ropeCtrRef.MustApplyRopeForce = true;
             }
+        }
+
+        if (ShieldCount > 0 && _shieldObject.activeSelf == false)
+        {
+            _shieldObject.SetActive(true);
+        }
+
+        if (ShieldCount <= 0 && _shieldObject.activeSelf == true)
+        {
+            _shieldObject.SetActive(false);
         }
     }
 

@@ -66,21 +66,21 @@ public class RopeController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        foreach (var p in _pieces)
-        {
-            lengthResult += p.Length;
-        }
-
-        globalLength = lengthResult;
-
-        lengthResult = 0;
+        // foreach (var p in _pieces)
+        // {
+        //     lengthResult += p.Length;
+        // }
+        //
+        // globalLength = lengthResult;
+        //
+        // lengthResult = 0;
         
-        if (globalLength < _currentMaxLength)
+        if (_piece.Length < _currentMaxLength)
         {
             //_rope.AnchoringMode = AnchoringMode.None;
             _mustApplyRopeForce = false;
         }
-        else if (globalLength >= _currentMaxLength && !_mustApplyRopeForce)
+        else if (_piece.Length >= _currentMaxLength && !_mustApplyRopeForce)
         {
             _rope.AnchoringMode = AnchoringMode.ByBackEnd;
         }
@@ -93,29 +93,5 @@ public class RopeController : MonoBehaviour
             
             transform.position += dir * (_ropeForce * Time.deltaTime);
         }
-        
-        // if (_mustApplyRopeForce)
-        // {
-        //     var v = _rope.BackEnd.transform.position - gameObject.transform.position;
-        //     var dir = v.normalized;
-        //     
-        //     if (_piece.Length < _currentMaxLength)
-        //     {
-        //         _rope.AnchoringMode = AnchoringMode.ByBackEnd;
-        //         //_currentMaxLength = _initialMaxLength;
-        //         _mustApplyRopeForce = false;
-        //     }
-        //     
-        //     transform.position += dir * (_ropeForce * Time.deltaTime);
-        // }
-        // else
-        // {
-        //     if (_piece.Length >= _currentMaxLength && _rope.AnchoringMode == AnchoringMode.None)
-        //     {
-        //         _rope.AnchoringMode = AnchoringMode.ByBackEnd;
-        //         //_currentMaxLength = _initialMaxLength;
-        //         _mustApplyRopeForce = false;
-        //     }
-        // }
     }
 }

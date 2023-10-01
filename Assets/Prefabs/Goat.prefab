@@ -517,12 +517,14 @@ MonoBehaviour:
   maxHealth: 100
   _healthRegenAmount: 5
   _healthRegenFrequency: 1
+  _onHitParticleSystem: {fileID: 4449642477696091245}
   Timer: 0
   Score: 0
   scoreText: {fileID: 0}
   timeText: {fileID: 0}
   ShieldCount: 0
   InvincibilityDuration: 0
+  ExtendRopeDuration: 0
 --- !u!138 &802000628
 FixedJoint:
   m_ObjectHideFlags: 0
@@ -579,7 +581,7 @@ MonoBehaviour:
   _rope: {fileID: 0}
   _piece: {fileID: 0}
   _initialMaxLength: 5
-  _ropeForce: 100
+  _ropeForce: 50
 --- !u!1 &3059685116449295940
 GameObject:
   m_ObjectHideFlags: 0
@@ -828,6 +830,12 @@ PrefabInstance:
 --- !u!4 &4449642477696091244 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4449642477954754026, guid: e8c8f8d60b2c74045990f63fd5a4e46b,
+    type: 3}
+  m_PrefabInstance: {fileID: 929816966}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &4449642477696091245 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 4449642477954754027, guid: e8c8f8d60b2c74045990f63fd5a4e46b,
     type: 3}
   m_PrefabInstance: {fileID: 929816966}
   m_PrefabAsset: {fileID: 0}

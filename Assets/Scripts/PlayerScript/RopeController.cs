@@ -17,6 +17,8 @@ public class RopeController : MonoBehaviour
 
     private bool _mustApplyRopeForce = false;
     
+    private InputWrapper _inputs;
+    
     private float _currentMaxLength;
 
     public bool MustApplyRopeForce
@@ -45,6 +47,8 @@ public class RopeController : MonoBehaviour
 
     private void Awake()
     {
+        _inputs = GetComponent<InputWrapper>();
+        
         _rope.AnchoringMode = AnchoringMode.None;
         _currentMaxLength = _initialMaxLength;
     }
@@ -58,22 +62,46 @@ public class RopeController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (_piece.Length < _currentMaxLength)
+        {
+            //_rope.AnchoringMode = AnchoringMode.None;
+            _mustApplyRopeForce = false;
+        }
+        else
+        {
+            _rope.AnchoringMode = AnchoringMode.ByBackEnd;
+        }
+
+        if (_mustApplyRopeForce)
+        {
+            var v = _rope.BackEnd.transform.position - gameObject.transform.position;
+            var dir = v.normalized;
+            
+            transform.position += dir * (_ropeForce * Time.deltaTime);
+        }
+        
         // if (_mustApplyRopeForce)
         // {
         //     var v = _rope.BackEnd.transform.position - gameObject.transform.position;
         //     var dir = v.normalized;
-        //
+        //     
+        //     if (_piece.Length < _currentMaxLength)
+        //     {
+        //         _rope.AnchoringMode = AnchoringMode.ByBackEnd;
+        //         //_currentMaxLength = _initialMaxLength;
+        //         _mustApplyRopeForce = false;
+        //     }
+        //     
         //     transform.position += dir * (_ropeForce * Time.deltaTime);
         // }
-        
-        // Debug.Log(_currentMaxLength);
-        // Debug.Log(_rope.AnchoringMode);
-        
-        if (_piece.Length >= _currentMaxLength && _rope.AnchoringMode == AnchoringMode.None)
-        {
-            _rope.AnchoringMode = AnchoringMode.ByBackEnd;
-            //_currentMaxLength = _initialMaxLength;
-            _mustApplyRopeForce = false;
-        }
+        // else
+        // {
+        //     if (_piece.Length >= _currentMaxLength && _rope.AnchoringMode == AnchoringMode.None)
+        //     {
+        //         _rope.AnchoringMode = AnchoringMode.ByBackEnd;
+        //         //_currentMaxLength = _initialMaxLength;
+        //         _mustApplyRopeForce = false;
+        //     }
+        // }
     }
 }

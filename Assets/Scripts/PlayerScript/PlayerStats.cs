@@ -16,6 +16,8 @@ public class PlayerStats : MonoBehaviour
 
     [SerializeField] private ParticleSystem _onHitParticleSystem;
 
+    private RopeController _ropeCtrRef;
+    
     private float _healthTimer;
 
     public static event Action<PlayerStats> OnHealthChanging;
@@ -28,10 +30,12 @@ public class PlayerStats : MonoBehaviour
 
     public int ShieldCount;
     public float InvincibilityDuration;
+    public float ExtendRopeDuration;
 
     private void Start()
     {
         currentHealth = maxHealth;
+        _ropeCtrRef = FindObjectOfType<RopeController>();
     }
 
     // Update is called once per frame
@@ -72,6 +76,18 @@ public class PlayerStats : MonoBehaviour
             if (InvincibilityDuration <= 0)
             {
                 InvincibilityDuration = 0;
+            }
+        }
+        
+        if (ExtendRopeDuration > 0)
+        {
+            ExtendRopeDuration -= Time.deltaTime;
+
+            if (ExtendRopeDuration <= 0)
+            {
+                ExtendRopeDuration = 0;
+                _ropeCtrRef.CurrentMaxLength /= ExtendRopeBonus.RopeExtensionFactor;
+                _ropeCtrRef.MustApplyRopeForce = true;
             }
         }
     }

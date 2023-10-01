@@ -49,4 +49,5 @@ MonoBehaviour:
   - {fileID: -8053253811562326312, guid: 2aa055e08ff614240afce298f4f85d48, type: 3}
   - {fileID: 838127708609024768, guid: 054131e7f92e8004288cd833090dd81c, type: 3}
   - {fileID: 3934274778047664533, guid: 6b8cd9b6c746ff449ae959142504a6ae, type: 3}
+  - {fileID: 6800634305993422830, guid: 9c6cfd428fa083548abce20e20e8758c, type: 3}
   _bonusSpawnFrequency: 3

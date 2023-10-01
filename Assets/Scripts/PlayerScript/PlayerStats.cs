@@ -25,14 +25,15 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private TextMeshProUGUI timeText;
     
     public int ShieldCount;
+    public float InvincibilityDuration;
 
-    void Start()
+    private void Start()
     {
         currentHealth = maxHealth;
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         Timer += Time.deltaTime;
         _scoreTimer += Time.deltaTime;
@@ -60,6 +61,16 @@ public class PlayerStats : MonoBehaviour
             currentHealth = maxHealth;
             OnHealthChanging?.Invoke(this);
         }
+        
+        if (InvincibilityDuration > 0)
+        {
+            InvincibilityDuration -= Time.deltaTime;
+            
+            if (InvincibilityDuration <= 0)
+            {
+                InvincibilityDuration = 0;
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -68,7 +79,8 @@ public class PlayerStats : MonoBehaviour
 
         if (projRef)
         {
-            if (ShieldCount > 0)
+            if (InvincibilityDuration > 0) {}
+            else if (ShieldCount > 0)
             {
                 ShieldCount--;
             }

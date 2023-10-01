@@ -18,9 +18,9 @@ public abstract class BonusBase : MonoBehaviour
     private bool _isCollected = false;
 
     [SerializeField] private float _rotationSpeed = 30f;
-    
-    private float _initialYPosition;
-   
+
+    private const float InitialYPosition = 1f;
+
     public event Action<BonusBase> OnBonusDestroy;
 
     public abstract void BonusEffect();
@@ -50,13 +50,13 @@ public abstract class BonusBase : MonoBehaviour
         if (!_isCollected)
         {
             float yOffset = Mathf.Cos(Time.time) * 0.5f; // Adjust the amplitude as needed
-            transform.position = new Vector3(transform.position.x, _initialYPosition + yOffset, transform.position.z);
+            transform.position = new Vector3(transform.position.x, InitialYPosition + yOffset, transform.position.z);
         }
 
         if (_isCollected)
         {
             float yOffset = Mathf.Cos(Time.time) * 0.5f; // Adjust the amplitude as needed
-            transform.position = new Vector3(transform.position.x, _initialYPosition + yOffset, transform.position.z);
+            transform.position = new Vector3(transform.position.x, InitialYPosition + yOffset, transform.position.z);
 
             // Handle the duration of the bonus effect
             if (Time.time >= _timerDurationBonusEffect + bonusEffectDuration)

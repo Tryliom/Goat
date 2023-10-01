@@ -16,8 +16,11 @@ public class RopeController : MonoBehaviour
     [SerializeField] private float _ropeForce = 20;
 
     private bool _mustApplyRopeForce = false;
-    
-    private InputWrapper _inputs;
+
+    private Piece[] _pieces;
+
+    private float lengthResult;
+    private float globalLength;
     
     private float _currentMaxLength;
 
@@ -47,33 +50,44 @@ public class RopeController : MonoBehaviour
 
     private void Awake()
     {
-        _inputs = GetComponent<InputWrapper>();
+        Piece.OnSpawn += AddPiece;
+        
+        _pieces = FindObjectsOfType<Piece>();
         
         _rope.AnchoringMode = AnchoringMode.None;
         _currentMaxLength = _initialMaxLength;
     }
 
-    // Start is called before the first frame update
-    void Start()
+    private void AddPiece(Piece p)
     {
-        
+        _pieces = FindObjectsOfType<Piece>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (_piece.Length < _currentMaxLength)
+        foreach (var p in _pieces)
+        {
+            lengthResult += p.Length;
+        }
+
+        globalLength = lengthResult;
+
+        lengthResult = 0;
+        
+        if (globalLength < _currentMaxLength)
         {
             //_rope.AnchoringMode = AnchoringMode.None;
             _mustApplyRopeForce = false;
         }
-        else
+        else if (globalLength >= _currentMaxLength && !_mustApplyRopeForce)
         {
             _rope.AnchoringMode = AnchoringMode.ByBackEnd;
         }
 
         if (_mustApplyRopeForce)
         {
+            _rope.AnchoringMode = AnchoringMode.None;
             var v = _rope.BackEnd.transform.position - gameObject.transform.position;
             var dir = v.normalized;
             

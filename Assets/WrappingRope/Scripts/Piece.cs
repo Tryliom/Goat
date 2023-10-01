@@ -14,9 +14,11 @@ using WrappingRopeLibrary.Utils;
 namespace WrappingRopeLibrary.Scripts
 {
     [ExecuteInEditMode]
-    public class Piece : MonoBehaviour 
+    public class Piece : MonoBehaviour
     {
 
+        public static event Action<Piece> OnSpawn;
+        
         public Piece FrontPiece;
 
         public Piece BackPiece;
@@ -99,6 +101,8 @@ namespace WrappingRopeLibrary.Scripts
         {
             TrySetMaterial();
             DontReorganizeWhenDestroy = false;
+            
+            OnSpawn?.Invoke(this);
         }
 
 

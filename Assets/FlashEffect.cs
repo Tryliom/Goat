@@ -8,21 +8,29 @@ public class FlashEffect : MonoBehaviour
 {
     [SerializeField] private Image _renderer;
     [SerializeField] private float _speed = 6f;
-
+    
     private bool isTransparent;
     // Start is called before the first frame update
     void Start()
     {
-        
+        BoomBonus.OnBoom += ActivateFlash;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Flash();
-        StartCoroutine(FlashEffectCoroutine());
+        // if (gameObject.activeSelf)
+        // {
+        //     Flash();
+        // }
     }
 
+    void ActivateFlash()
+    {
+        Debug.Log("FLash");
+        StartCoroutine(FlashEffectCoroutine());
+    }
+    
     void Flash()
     {
         if (isTransparent)
@@ -46,7 +54,7 @@ public class FlashEffect : MonoBehaviour
         }
     }
 
-    IEnumerator FlashEffectCoroutine()
+    public IEnumerator FlashEffectCoroutine()
     {
         if (isTransparent)
         {
@@ -56,9 +64,7 @@ public class FlashEffect : MonoBehaviour
         {
             _renderer.color = new Color(_renderer.color.r, _renderer.color.g, _renderer.color.b, _renderer.color.a - Time.deltaTime * _speed);
         }
-        Debug.Log(_renderer.color.a);
-
-
+        
         if (_renderer.color.a >= 1)
         {
             isTransparent = false;

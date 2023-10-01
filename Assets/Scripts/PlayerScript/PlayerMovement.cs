@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Windows;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -12,7 +9,11 @@ public class PlayerMovement : MonoBehaviour
     private PlayerStats _stats;
     private Animator _animator;
     
+    private float _walkSoundTimer;
+    private SoundPlayer _soundPlayer;
+    
     [SerializeField] private float _angularSpeed = 10f;
+    [SerializeField] private float _walkSoundFrequency = 0.2f;
     
     private void Start()
     {
@@ -20,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody>();
         _stats = GetComponent<PlayerStats>();
         _animator = GetComponentInChildren<Animator>();
+        _soundPlayer = FindObjectOfType<SoundPlayer>();
     }
 
     // Update is called once per frame
@@ -40,6 +42,17 @@ public class PlayerMovement : MonoBehaviour
             var wantedRotation = Quaternion.LookRotation(velocity, Vector3.up);
             
             transform.rotation = Quaternion.Slerp(transform.rotation, wantedRotation, _angularSpeed * Time.deltaTime);
+        }
+        
+        if (_movementVelocity.magnitude > 0.1f)
+        {
+            _walkSoundTimer += Time.deltaTime;
+            
+            if (_walkSoundTimer >= _walkSoundFrequency)
+            {
+                _walkSoundTimer = 0;
+                _soundPlayer.PlaySound(SoundType.GoatWalk);
+            }
         }
     }
 

@@ -11,6 +11,7 @@ public class SeekerHeadProj : Projectile
     {
         base.Awake();
         _playerRef = FindObjectOfType<Player>();
+        _projectileType = ProjectileType.Bird;
     }
 
     protected override void Update()
@@ -23,8 +24,15 @@ public class SeekerHeadProj : Projectile
         Vector3 direction = selfToPlayer.normalized;
 
         _trajectory = direction * _speed;
+
+        transform.rotation = Quaternion.LookRotation(_trajectory);
     }
-    
+
+    protected override void Anim()
+    {
+        return;
+    }
+
     protected override void FixedUpdate()
     {
         base.FixedUpdate();

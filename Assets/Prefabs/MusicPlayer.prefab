@@ -47,9 +47,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _audioSource: {fileID: 8495757227053439896}
   _audioData: {fileID: 11400000, guid: c108d44ba8d8f9043afb762ee1e46dbd, type: 2}
-  _menu: {fileID: 8300000, guid: 0ad4e20233b7552489e68b6aadaf79a1, type: 3}
-  _game: {fileID: 8300000, guid: 1a614caf9a19ef3438caf8384c846d65, type: 3}
-  _loose: {fileID: 8300000, guid: 1c6d9ba3c4966d34abc979a1b7d32bc8, type: 3}
+  _menu: {fileID: 8300000, guid: 63ad6f7091aa07b449569e57d33745cc, type: 3}
+  _game: {fileID: 8300000, guid: b95d5e4ccdb5b0d41b2e6be8a9c71d11, type: 3}
+  _loose: {fileID: 8300000, guid: 19148b665909d124b9db6276ff8f5897, type: 3}
 --- !u!82 &8495757227053439896
 AudioSource:
   m_ObjectHideFlags: 0

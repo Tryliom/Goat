@@ -46,20 +46,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _linearProj: {fileID: -505262329184039545, guid: 4a7bf6b1e6d68fc44956982f14914fed,
     type: 3}
-  _burstProj: {fileID: 6757711708362883628, guid: 71df657b4ea3e3c449176f548bf0bdbd,
-    type: 3}
+  _burstProjectiles:
+  - {fileID: 6757711708362883628, guid: c508613aa7bbeb04e908015247a71849, type: 3}
+  - {fileID: 6757711708362883628, guid: 407366e709dd8a9458a1598ef5f28c23, type: 3}
+  - {fileID: 6757711708362883628, guid: 71df657b4ea3e3c449176f548bf0bdbd, type: 3}
   _seekerHeadProj: {fileID: -6126064349459812166, guid: e4ca08fa29f085642b29510ae144a3dd,
     type: 3}
   _burstProjFrequency: 0.3
   _burstProjNbr: 3
-  _baseMinSpawnFrequency: 5
-  _baseMaxSpawnFrequency: 7
+  _baseMinSpawnFrequency: 2
+  _baseMaxSpawnFrequency: 3
   _minSpawnFrequency: 1
   _maxSpawnFrequency: 2.5
   _spawnFrequencyDiminution: 0.3
   _amountOfTimeToDiminuateFreq: 5
-  _enemyPrefab: {fileID: -2393678062553352598, guid: d276c0390db523341b1b6b7355cd2732,
-    type: 3}
   _spawnRadius: 13
   _attackRadius: 7
   _center: {fileID: 0}

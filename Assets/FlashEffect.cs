@@ -31,10 +31,15 @@ public class FlashEffect : MonoBehaviour
         }
     }
 
-    void ActivateFlash()
+    void ActivateFlash(BoomBonus b)
     {
+        if (b.GetComponent<BoomBonus>())
+        {
+            StartCoroutine(FlashEffectCoroutine());
+        }
+        
         // Debug.Log("FLash");
-        StartCoroutine(FlashEffectCoroutine());
+        
     }
     
     void Flash()

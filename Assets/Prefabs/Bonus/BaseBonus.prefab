@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2126931215761619938}
   - component: {fileID: 7218219468064906359}
-  - component: {fileID: -6639182806384225872}
   m_Layer: 2
   m_Name: BaseBonus
   m_TagString: Untagged
@@ -27,8 +26,8 @@ Transform:
   m_GameObject: {fileID: 1904512253872832073}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.16729271, y: 0.32378578, z: 0.09171295}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.35, y: 1.35, z: 1.35}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -47,17 +46,3 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-6639182806384225872
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1904512253872832073}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb1ebac407e28c408ddeee35239dd89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bonusEffectDuration: 2
-  _rotationSpeed: 30

@@ -41,8 +41,8 @@ public class ProjectileShooter : MonoBehaviour
     [SerializeField] private float _amountOfTimeToDiminuateFreq;
 
     [Header("Enemy")] 
-    [SerializeField] private Enemy _enemyPrefab;
-    [SerializeField] private float _spawnRadius = 20f;
+    //[SerializeField] private Enemy _enemyPrefab;
+    [SerializeField] private float _spawnRadius = 7f;
     [SerializeField] private float _attackRadius = 6f;
     [SerializeField] private Transform _center;
     [SerializeField] private float _ignoreAngle = 50f;
@@ -56,12 +56,15 @@ public class ProjectileShooter : MonoBehaviour
     
     private float _elapsedTime;
     private float _diminTime;
+    
+    private SoundPlayer _soundPlayer;
 
     private void Awake()
     {
         _currentFrequency = Random.Range(_baseMinSpawnFrequency, _baseMaxSpawnFrequency);
         _lowerFrequency = _baseMinSpawnFrequency;
         _higherFrequency = _baseMaxSpawnFrequency;
+        _soundPlayer = FindObjectOfType<SoundPlayer>();
     }
     
     private void Update()
@@ -86,9 +89,12 @@ public class ProjectileShooter : MonoBehaviour
         if (_elapsedTime >= _currentFrequency)
         {
             // Spawn an enemy far away at _spawnRadius
-            var farPosition = GetRandomPositionAroundCenter();
-            var targetPosition = Vector3.Lerp(farPosition, _center.position, (_spawnRadius - _attackRadius) / _spawnRadius);
-            var enemy = Instantiate(_enemyPrefab.gameObject, farPosition, Quaternion.identity).GetComponent<Enemy>();
+            var pos = GetRandomPositionAroundCenter();
+            
+            Shoot(pos);
+            
+            //var targetPosition = Vector3.Lerp(farPosition, _center.position, (_spawnRadius - _attackRadius) / _spawnRadius);
+            //var enemy = Instantiate(_enemyPrefab.gameObject, farPosition, Quaternion.identity).GetComponent<Enemy>();
 
             _elapsedTime = 0f;
 
@@ -112,31 +118,34 @@ public class ProjectileShooter : MonoBehaviour
         return new Vector3(x, 0, z) + _center.position;
     }
     
-    private void ShootFromEnemy(Enemy enemy)
+    private void Shoot(Vector3 pos)
     {
         var projType = Random.Range(0, (int) ProjectileType.Count);
 
         switch (projType)
         {
             case (int) ProjectileType.Linear:
-                Instantiate(_linearProj.gameObject, enemy.transform.position, Quaternion.identity);
+                _soundPlayer.PlaySound(SoundType.ThrowChair);
+                Instantiate(_linearProj.gameObject, pos, Quaternion.identity);
                 break;
             case (int) ProjectileType.Burst:
-                StartCoroutine(SpawnBurstProjectilesWithCooldown(enemy));
+                StartCoroutine(SpawnBurstProjectilesWithCooldown(pos));
                 break;
             case (int) ProjectileType.SeekerHead:
-                Instantiate(_seekerHeadProj.gameObject, enemy.transform.position, Quaternion.identity);
+                _soundPlayer.PlaySound(SoundType.ThrowBird);
+                Instantiate(_seekerHeadProj.gameObject, pos, Quaternion.identity);
                 break;
             default:
                 break;
         }
     }
     
-    private IEnumerator SpawnBurstProjectilesWithCooldown(Enemy enemy)
+    private IEnumerator SpawnBurstProjectilesWithCooldown(Vector3 pos)
     {
         for (var i = 0; i < _burstProjNbr; i++)
         {
-            Instantiate(_burstProjectiles[i], enemy.transform.position, Quaternion.identity);
+            _soundPlayer.PlaySound(SoundType.ThrowChair);
+            Instantiate(_burstProjectiles[i], pos, Quaternion.identity);
             yield return new WaitForSeconds(_burstProjFrequency);
         }
     }

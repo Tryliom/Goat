@@ -11,14 +11,18 @@ public class Obstacle : MonoBehaviour
     private Vector3 targetScale;
     private Vector3 originalPosition;
     private Vector3 targetPosition;
+    
+    private SoundPlayer _soundPlayer;
 
     private void Start()
     {
+        _soundPlayer = FindObjectOfType<SoundPlayer>();
         originalScale = transform.localScale;
         targetScale = new Vector3(originalScale.x * 2f, originalScale.y, originalScale.z);
         originalPosition = transform.position;
         targetPosition = new Vector3(originalPosition.x, originalPosition.y + 0.8f, originalPosition.z);
         
+        _soundPlayer.PlaySound(SoundType.PillarUp);
         StartCoroutine(AnimateAppearance());
     }
 
@@ -41,6 +45,7 @@ public class Obstacle : MonoBehaviour
     IEnumerator AnimateDisappearance()
     {
         float elapsedTime = 0f;
+        _soundPlayer.PlaySound(SoundType.PillarDown);
 
         while (elapsedTime < AppearTime)
         {

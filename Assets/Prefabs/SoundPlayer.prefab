@@ -76,10 +76,10 @@ MonoBehaviour:
     Volume: 1
   - SoundType: 10
     AudioClip: {fileID: 8300000, guid: 8010d9b1ab50d3345a44ae710f4ab5d7, type: 3}
-    Volume: 1
+    Volume: 2
   - SoundType: 11
     AudioClip: {fileID: 8300000, guid: 7c8fb69cc4ed4904aaa691163aef7a3d, type: 3}
-    Volume: 1
+    Volume: 2
   - SoundType: 12
     AudioClip: {fileID: 8300000, guid: 59e6fe371c543974abde27866707b51b, type: 3}
     Volume: 1

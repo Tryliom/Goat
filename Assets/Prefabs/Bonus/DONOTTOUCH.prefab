@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 1904512253872832073, guid: 8bbb2b95a9c6b3d4881597ee01e7b9ec,
         type: 3}
       propertyPath: m_Name
-      value: ExtendRopBonus
+      value: DONOTTOUCH
       objectReference: {fileID: 0}
     - target: {fileID: 2126931215761619938, guid: 8bbb2b95a9c6b3d4881597ee01e7b9ec,
         type: 3}
@@ -139,5 +139,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bonusEffectDuration: 5
   _rotationSpeed: 30
-  _ropeExtensionFactor: 2
   _extendRopeDuration: 5

@@ -10,6 +10,8 @@ public class FlashEffect : MonoBehaviour
     [SerializeField] private float _speed = 6f;
     
     private bool isTransparent;
+
+    private bool _mustFlash;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,20 +21,26 @@ public class FlashEffect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // if (gameObject.activeSelf)
-        // {
-        //     Flash();
-        // }
+        if (_mustFlash)
+        {
+            Flash();
+        }
+        else
+        {
+            _renderer.color = new Color(_renderer.color.r, _renderer.color.g, _renderer.color.b, 0);
+        }
     }
 
     void ActivateFlash()
     {
-        Debug.Log("FLash");
+        // Debug.Log("FLash");
         StartCoroutine(FlashEffectCoroutine());
     }
     
     void Flash()
     {
+        //StartCoroutine(nameof(FlashEffectCoroutine));
+
         if (isTransparent)
         {
             _renderer.color = new Color(_renderer.color.r, _renderer.color.g, _renderer.color.b, _renderer.color.a + Time.deltaTime * _speed);
@@ -42,8 +50,8 @@ public class FlashEffect : MonoBehaviour
             _renderer.color = new Color(_renderer.color.r, _renderer.color.g, _renderer.color.b, _renderer.color.a - Time.deltaTime * _speed);
         }
         Debug.Log(_renderer.color.a);
-
-
+        
+        
         if (_renderer.color.a >= 1)
         {
             isTransparent = false;
@@ -56,25 +64,11 @@ public class FlashEffect : MonoBehaviour
 
     public IEnumerator FlashEffectCoroutine()
     {
-        if (isTransparent)
-        {
-            _renderer.color = new Color(_renderer.color.r, _renderer.color.g, _renderer.color.b, _renderer.color.a + Time.deltaTime * _speed);
-        }
-        else
-        {
-            _renderer.color = new Color(_renderer.color.r, _renderer.color.g, _renderer.color.b, _renderer.color.a - Time.deltaTime * _speed);
-        }
-        
-        if (_renderer.color.a >= 1)
-        {
-            isTransparent = false;
-        }
-        else if (_renderer.color.a <= 0)
-        {
-            isTransparent = true;
-        }
+        _mustFlash = true;
 
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.35f);
+
+        _mustFlash = false;
     }
 
 }

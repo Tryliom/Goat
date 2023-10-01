@@ -37,9 +37,6 @@ public class FlashEffect : MonoBehaviour
         {
             StartCoroutine(FlashEffectCoroutine());
         }
-        
-        // Debug.Log("FLash");
-        
     }
     
     void Flash()
@@ -52,11 +49,11 @@ public class FlashEffect : MonoBehaviour
         }
         else
         {
-            _renderer.color = new Color(_renderer.color.r, _renderer.color.g, _renderer.color.b, _renderer.color.a - Time.deltaTime * _speed);
+            _renderer.color = new Color(_renderer.color.r, _renderer.color.g, _renderer.color.b,
+                _renderer.color.a - Time.deltaTime * _speed);
         }
-        Debug.Log(_renderer.color.a);
-        
-        
+
+
         if (_renderer.color.a >= 1)
         {
             isTransparent = false;

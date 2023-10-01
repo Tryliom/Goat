@@ -38,7 +38,7 @@ public class BonusManager : MonoBehaviour
         {
             int rndIdx = Random.Range(0, _bonus.Count);
 
-            var rndPos = new Vector3(Random.Range(xMin, xMax), 1f, Random.Range(zMin, zMax));
+            var rndPos = new Vector3(Random.Range(xMin, xMax), 0.8f, Random.Range(zMin, zMax));
             
             var bonus = Instantiate(_bonus[rndIdx].gameObject, rndPos, Quaternion.identity);
 

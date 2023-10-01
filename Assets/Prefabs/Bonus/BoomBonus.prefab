@@ -172,7 +172,8 @@ PrefabInstance:
       propertyPath: m_Center.y
       value: 0.008446816
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7218219468064906359, guid: 8bbb2b95a9c6b3d4881597ee01e7b9ec, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8bbb2b95a9c6b3d4881597ee01e7b9ec, type: 3}
 --- !u!4 &2540035438526541747 stripped
 Transform:
@@ -186,6 +187,19 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 4522850349252219985}
   m_PrefabAsset: {fileID: 0}
+--- !u!135 &2720037754778062256
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2642007282461305368}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.35
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2053993851104576891
 MonoBehaviour:
   m_ObjectHideFlags: 0

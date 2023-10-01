@@ -19,7 +19,7 @@ public abstract class BonusBase : MonoBehaviour
 
     [SerializeField] private float _rotationSpeed = 30f;
 
-    private const float InitialYPosition = 1f;
+    private const float InitialYPosition = 0.8f;
     
     private SoundPlayer _soundPlayer;
 

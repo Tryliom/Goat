@@ -71,7 +71,7 @@ public class ProjectileShooter : MonoBehaviour
         
         if (_elapsedTime >= _currentFrequency)
         {
-            int projType = Random.Range(0, (int)ProjectileType.Count);
+            int projType = Random.Range(2, (int)ProjectileType.Count);
 
             switch (projType)
             {

@@ -1,13 +1,16 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Quaternion = UnityEngine.Quaternion;
 using Random = UnityEngine.Random;
+using Vector3 = UnityEngine.Vector3;
 
 public class ProjectileShooter : MonoBehaviour
 {
-    enum ProjectileType
+    private enum ProjectileType
     {
         Linear,
         Burst,
@@ -31,13 +34,20 @@ public class ProjectileShooter : MonoBehaviour
     [SerializeField] private float _maxSpawnFrequency = 3f;
     [SerializeField] private float _spawnFrequencyDiminution;
     [SerializeField] private float _amountOfTimeToDiminuateFreq;
+
+    [Header("Enemy")] 
+    [SerializeField] private Enemy _enemyPrefab;
+    [SerializeField] private float _spawnRadius = 20f;
+    [SerializeField] private float _attackRadius = 6f;
+    [SerializeField] private Transform _center;
+    [SerializeField] private float _ignoreAngle = 50f;
+    
     private float _lowerFrequency;
     private float _higherFrequency;
     private float _currentFrequency;
 
     private bool MustDiminuateFrequency =>
         _lowerFrequency > _minSpawnFrequency && _higherFrequency > _maxSpawnFrequency; 
-    
     
     private float _elapsedTime;
     private float _diminTime;
@@ -48,9 +58,8 @@ public class ProjectileShooter : MonoBehaviour
         _lowerFrequency = _baseMinSpawnFrequency;
         _higherFrequency = _baseMaxSpawnFrequency;
     }
-
-    // Update is called once per frame
-    void Update()
+    
+    private void Update()
     {
         _elapsedTime += Time.deltaTime;
         _diminTime += Time.deltaTime;
@@ -71,22 +80,13 @@ public class ProjectileShooter : MonoBehaviour
         
         if (_elapsedTime >= _currentFrequency)
         {
-            int projType = Random.Range(2, (int)ProjectileType.Count);
-
-            switch (projType)
-            {
-                case (int)ProjectileType.Linear:
-                    Instantiate(_linearProj.gameObject, transform.position, Quaternion.identity);
-                    break;
-                case (int)ProjectileType.Burst:
-                    StartCoroutine(SpawnBurstProjectilesWithCooldown());
-                    break;
-                case (int)ProjectileType.SeekerHead:
-                    Instantiate(_seekerHeadProj.gameObject, transform.position, Quaternion.identity);
-                    break;
-                default:
-                    break;
-            }
+            // Spawn an enemy far away at _spawnRadius
+            var farPosition = GetRandomPositionAroundCenter();
+            var targetPosition = Vector3.Lerp(farPosition, _center.position, (_spawnRadius - _attackRadius) / _spawnRadius);
+            var enemy = Instantiate(_enemyPrefab.gameObject, farPosition, Quaternion.identity).GetComponent<Enemy>();
+            
+            enemy.Init(farPosition, targetPosition);
+            enemy.SetOnReachedTarget(ShootFromEnemy);
 
             _elapsedTime = 0f;
 
@@ -94,12 +94,51 @@ public class ProjectileShooter : MonoBehaviour
         }
     }
 
-    private IEnumerator SpawnBurstProjectilesWithCooldown()
+    private Vector3 GetRandomPositionAroundCenter()
     {
-        for (int i = 0; i < _burstProjNbr; i++)
+        var x = Random.Range(_spawnRadius, _spawnRadius + 2);
+        var z = Random.Range(_spawnRadius, _spawnRadius + 2);
+        
+        // Use a random angle between 0 and 360 degrees converted to radians.
+        var angle = (Random.Range(_ignoreAngle, 360) + _ignoreAngle) * Mathf.Deg2Rad;
+        
+        // Get the X & Z position of the unit circle using the random angle.
+        x *= Mathf.Cos(angle);
+        z *= Mathf.Sin(angle);
+        
+        return new Vector3(x, 0, z) + _center.position;
+    }
+    
+    private void ShootFromEnemy(Enemy enemy)
+    {
+        var projType = Random.Range(0, (int) ProjectileType.Count);
+
+        switch (projType)
         {
-            Instantiate(_burstProj.gameObject, transform.position, Quaternion.identity);
+            case (int) ProjectileType.Linear:
+                Instantiate(_linearProj.gameObject, enemy.transform.position, Quaternion.identity);
+                enemy.GoBack();
+                break;
+            case (int) ProjectileType.Burst:
+                StartCoroutine(SpawnBurstProjectilesWithCooldown(enemy));
+                break;
+            case (int) ProjectileType.SeekerHead:
+                Instantiate(_seekerHeadProj.gameObject, enemy.transform.position, Quaternion.identity);
+                enemy.GoBack();
+                break;
+            default:
+                break;
+        }
+    }
+    
+    private IEnumerator SpawnBurstProjectilesWithCooldown(Enemy enemy)
+    {
+        for (var i = 0; i < _burstProjNbr; i++)
+        {
+            Instantiate(_burstProj.gameObject, enemy.transform.position, Quaternion.identity);
             yield return new WaitForSeconds(_burstProjFrequency);
         }
+        
+        enemy.GoBack();
     }
 }

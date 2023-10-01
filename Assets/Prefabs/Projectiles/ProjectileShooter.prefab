@@ -24,13 +24,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3950474933504782736}
-  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 8, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &9212065264451994967
 MonoBehaviour:
@@ -44,8 +44,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 463e909a19ab06446bff66cc482a180d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _linearProj: {fileID: -505262329184039545, guid: 4a7bf6b1e6d68fc44956982f14914fed, type: 3}
-  _burstProj: {fileID: 6757711708362883628, guid: 71df657b4ea3e3c449176f548bf0bdbd, type: 3}
-  _spawnFrequency: 1
-  _burstProjFrequency: 0.4
+  _linearProj: {fileID: -505262329184039545, guid: 4a7bf6b1e6d68fc44956982f14914fed,
+    type: 3}
+  _burstProj: {fileID: 6757711708362883628, guid: 71df657b4ea3e3c449176f548bf0bdbd,
+    type: 3}
+  _seekerHeadProj: {fileID: -6126064349459812166, guid: e4ca08fa29f085642b29510ae144a3dd,
+    type: 3}
+  _burstProjFrequency: 0.3
   _burstProjNbr: 3
+  _baseMinSpawnFrequency: 5
+  _baseMaxSpawnFrequency: 7
+  _minSpawnFrequency: 1
+  _maxSpawnFrequency: 2.5
+  _spawnFrequencyDiminution: 0.3
+  _amountOfTimeToDiminuateFreq: 5
+  _enemyPrefab: {fileID: -2393678062553352598, guid: d276c0390db523341b1b6b7355cd2732,
+    type: 3}
+  _spawnRadius: 13
+  _attackRadius: 7
+  _center: {fileID: 0}
+  _ignoreAngle: 50

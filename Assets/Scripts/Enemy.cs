@@ -1,17 +1,61 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private List<Material> _materials;
+    [SerializeField] private float _minSpeed = 2f;
+    [SerializeField] private float _maxSpeed = 3.5f;
     
-    private void Start()
+    private Vector3 _initialPosition;
+    private Vector3 _targetPosition;
+    private Action<Enemy> _onReachedTarget;
+    
+    private bool _goBack;
+    private bool _stop;
+    private float _speed;
+    
+    private void Awake()
     {
-        var mesh = GetComponent<MeshRenderer>();
-        
-        for (var i = 0; i < mesh.materials.Length; i++)
+        _speed = Random.Range(_minSpeed, _maxSpeed);
+    }
+    
+    private void Update()
+    {
+        if (_goBack)
         {
-            mesh.materials[i] = _materials[Random.Range(0, _materials.Count)];
+            transform.position = Vector3.MoveTowards(transform.position, _initialPosition, _speed * Time.deltaTime);
+            transform.LookAt(_initialPosition);
+            
+            if (transform.position - _initialPosition == Vector3.zero)
+            {
+                Destroy(gameObject);
+            }
         }
+        else if (!_stop)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, _targetPosition, _speed * Time.deltaTime);
+
+            if (transform.position - _targetPosition != Vector3.zero) return;
+            
+            _onReachedTarget?.Invoke(this);
+            _stop = true;
+        }
+    }
+    
+    public void Init(Vector3 initialPosition, Vector3 targetPosition)
+    {
+        _initialPosition = initialPosition;
+        _targetPosition = targetPosition;
+    }
+    
+    public void SetOnReachedTarget(Action<Enemy> onReachedTarget)
+    {
+        _onReachedTarget = onReachedTarget;
+    }
+    
+    public void GoBack()
+    {
+        _goBack = true;
     }
 }

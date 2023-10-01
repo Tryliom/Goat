@@ -13,7 +13,17 @@ public class RopeController : MonoBehaviour
 
     [SerializeField] private float _initialMaxLength = 5f;
 
+    [SerializeField] private float _ropeForce = 20;
+
+    private Rigidbody _rigidbody;
+    
     private float _currentMaxLength;
+
+    public float CurrentMaxLength
+    {
+        get => _currentMaxLength;
+        set => _currentMaxLength = value;
+    }
 
     public Rope Rope
     {
@@ -29,6 +39,7 @@ public class RopeController : MonoBehaviour
 
     private void Awake()
     {
+        _rigidbody = GetComponent<Rigidbody>();
         _rope.AnchoringMode = AnchoringMode.None;
         _currentMaxLength = _initialMaxLength;
     }
@@ -42,10 +53,21 @@ public class RopeController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_piece.Length >= _currentMaxLength && _rope.AnchoringMode == AnchoringMode.None)
+        if (_piece.Length > _currentMaxLength)
         {
-            _rope.AnchoringMode = AnchoringMode.ByBackEnd;
-            _currentMaxLength = _initialMaxLength;
+            var v = _rope.BackEnd.transform.position - gameObject.transform.position;
+            var dir = v.normalized;
+
+            if (_rigidbody.velocity.magnitude < 50)
+            {
+                _rigidbody.AddForce(dir * _ropeForce);
+            }
         }
+        
+        // if (_piece.Length >= _currentMaxLength && _rope.AnchoringMode == AnchoringMode.None)
+        // {
+        //     _rope.AnchoringMode = AnchoringMode.ByBackEnd;
+        //     _currentMaxLength = _initialMaxLength;
+        // }
     }
 }

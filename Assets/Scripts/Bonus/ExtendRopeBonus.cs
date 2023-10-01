@@ -16,6 +16,5 @@ public class ExtendRopeBonus : BonusBase
     public override void BonusEffect()
     {
         _ropeContrRef.Rope.AnchoringMode = AnchoringMode.None;
-        
     }
 }

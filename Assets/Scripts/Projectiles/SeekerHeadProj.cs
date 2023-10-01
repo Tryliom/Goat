@@ -23,8 +23,15 @@ public class SeekerHeadProj : Projectile
         Vector3 direction = selfToPlayer.normalized;
 
         _trajectory = direction * _speed;
+
+        Quaternion.LookRotation(_trajectory);
     }
-    
+
+    protected override void Anim()
+    {
+        return;
+    }
+
     protected override void FixedUpdate()
     {
         base.FixedUpdate();

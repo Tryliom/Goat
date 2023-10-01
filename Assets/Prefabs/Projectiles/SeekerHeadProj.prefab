@@ -118,7 +118,43 @@ PrefabInstance:
       propertyPath: m_Name
       value: SeekerHeadProj
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 6123053562006598580, guid: 2b877997054eda7469c7cb369e59a8d9,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.57179475
+      objectReference: {fileID: 0}
+    - target: {fileID: 6123053562006598580, guid: 2b877997054eda7469c7cb369e59a8d9,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 1.1837931
+      objectReference: {fileID: 0}
+    - target: {fileID: 6123053562006598580, guid: 2b877997054eda7469c7cb369e59a8d9,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6123053562006598580, guid: 2b877997054eda7469c7cb369e59a8d9,
+        type: 3}
+      propertyPath: m_Center.x
+      value: -0.00008982513
+      objectReference: {fileID: 0}
+    - target: {fileID: 6123053562006598580, guid: 2b877997054eda7469c7cb369e59a8d9,
+        type: 3}
+      propertyPath: m_Center.y
+      value: -0.0291726
+      objectReference: {fileID: 0}
+    - target: {fileID: 6123053562006598580, guid: 2b877997054eda7469c7cb369e59a8d9,
+        type: 3}
+      propertyPath: m_Center.z
+      value: -0.07706833
+      objectReference: {fileID: 0}
+    - target: {fileID: 6123053562006598580, guid: 2b877997054eda7469c7cb369e59a8d9,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 6123053562006598580, guid: 2b877997054eda7469c7cb369e59a8d9, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 2b877997054eda7469c7cb369e59a8d9, type: 3}
 --- !u!1 &7960680919479101671 stripped
 GameObject:
@@ -126,6 +162,19 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 4386048259266796632}
   m_PrefabAsset: {fileID: 0}
+--- !u!135 &6565868402725446306
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7960680919479101671}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.54753447
+  m_Center: {x: -0.0000898242, y: 0.001106441, z: -0.026725292}
 --- !u!114 &-6126064349459812166
 MonoBehaviour:
   m_ObjectHideFlags: 0

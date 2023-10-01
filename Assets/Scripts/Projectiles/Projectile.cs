@@ -42,8 +42,7 @@ public class Projectile : MonoBehaviour
             Destroy(this.gameObject);
         }
         
-        transform.Rotate(transform.right,  Random.Range(100f, 300f) * Time.deltaTime);
-        transform.Rotate(transform.forward, Random.Range(100f, 300f) * Time.deltaTime);
+        Anim();
     }
 
     protected virtual void FixedUpdate()
@@ -51,6 +50,12 @@ public class Projectile : MonoBehaviour
         _rb.velocity = _trajectory;
     }
 
+    protected virtual void Anim()
+    {
+        transform.Rotate(transform.right,  Random.Range(100f, 300f) * Time.deltaTime);
+        transform.Rotate(transform.forward, Random.Range(100f, 300f) * Time.deltaTime);
+    }
+    
     protected virtual void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.GetComponent<Obstacle>())

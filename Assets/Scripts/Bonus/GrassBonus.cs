@@ -3,8 +3,8 @@
 public class GrassBonus : BonusBase
 {
     [SerializeField] private int _bonusScore = 125;
-    [SerializeField] private float _bonusScale = 0.3f;
-    [SerializeField] private float _maxScale = 4f;
+    [SerializeField] private float _bonusScale = 0.1f;
+    [SerializeField] private float _maxScale = 2f;
     
     private PlayerStats _player;
     

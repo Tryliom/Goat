@@ -175,5 +175,5 @@ MonoBehaviour:
   bonusEffectDuration: 0
   _rotationSpeed: 30
   _bonusScore: 125
-  _bonusScale: 0.3
-  _maxScale: 4
+  _bonusScale: 0.1
+  _maxScale: 2

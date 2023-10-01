@@ -140,3 +140,4 @@ MonoBehaviour:
   bonusEffectDuration: 5
   _rotationSpeed: 30
   _ropeExtensionFactor: 2
+  _extendRopeDuration: 5

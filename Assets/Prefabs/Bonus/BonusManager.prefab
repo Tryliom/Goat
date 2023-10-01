@@ -46,4 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bonus:
   - {fileID: -6639182806384225872, guid: fabfcee2be57ba04aa10eb941fcbf2e2, type: 3}
-  _bonusSpawnFrequency: 0
+  - {fileID: -8053253811562326312, guid: 2aa055e08ff614240afce298f4f85d48, type: 3}
+  - {fileID: 838127708609024768, guid: 054131e7f92e8004288cd833090dd81c, type: 3}
+  _bonusSpawnFrequency: 3

@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.ParticleSystem;
 
 public class BonusJump : BonusBase
 {
@@ -10,8 +7,7 @@ public class BonusJump : BonusBase
     private float timerJump;
     [SerializeField] private float _timeBetweenEffect;
 
-
-    void Start()
+    private void Start()
     {
         canJump = true;
         _rb = FindObjectOfType<PlayerStats>().GetComponent<Rigidbody>();
@@ -23,7 +19,6 @@ public class BonusJump : BonusBase
 
     public override void BonusEffect()
     {
-        Debug.Log("Effect");
         if (canJump)
         {
             _rb.AddForce(0, 500, 0);

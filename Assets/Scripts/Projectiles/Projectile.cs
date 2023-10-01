@@ -15,6 +15,9 @@ public class Projectile : MonoBehaviour
     [SerializeField] protected float _lifeTime = 3f;
     private float _livingTime = 0f;
 
+    [SerializeField] private float _minRotationValue = 100f;
+    [SerializeField] private float _maxRotationValue = 300f;
+    
     public int Damage => _damage;
 
     protected virtual void Awake()
@@ -38,6 +41,9 @@ public class Projectile : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+        
+        transform.Rotate(transform.right, Random.Range(_minRotationValue, _maxRotationValue) * Time.deltaTime);
+        transform.Rotate(transform.forward, Random.Range(_minRotationValue, _maxRotationValue) * Time.deltaTime);
     }
 
     protected virtual void FixedUpdate()

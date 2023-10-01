@@ -15,7 +15,7 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private int _healthRegenFrequency;
 
     private float _healthTimer;
-    
+
     public static event Action<PlayerStats> OnHealthChanging;
 
     public float Timer;
@@ -23,7 +23,7 @@ public class PlayerStats : MonoBehaviour
     private float _scoreTimer;
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI timeText;
-    
+
     public int ShieldCount;
     public float InvincibilityDuration;
 
@@ -37,7 +37,8 @@ public class PlayerStats : MonoBehaviour
     {
         Timer += Time.deltaTime;
         _scoreTimer += Time.deltaTime;
-        timeText.text = "Time: " + Timer.ToString("F0");
+        TimeSpan tempsSpan = TimeSpan.FromSeconds(Timer);
+        timeText.text = "Time: " + string.Format("{0:00}:{1:00}", tempsSpan.Minutes, tempsSpan.Seconds);
         if (_scoreTimer >= 1.2f)
         {
             Score += 100;
@@ -49,7 +50,7 @@ public class PlayerStats : MonoBehaviour
         {
             _healthTimer += Time.deltaTime;
         }
-        
+
         if (_healthTimer >= _healthRegenFrequency && currentHealth < maxHealth)
         {
             UpdateHealth(_healthRegenAmount);
@@ -61,11 +62,11 @@ public class PlayerStats : MonoBehaviour
             currentHealth = maxHealth;
             OnHealthChanging?.Invoke(this);
         }
-        
+
         if (InvincibilityDuration > 0)
         {
             InvincibilityDuration -= Time.deltaTime;
-            
+
             if (InvincibilityDuration <= 0)
             {
                 InvincibilityDuration = 0;
@@ -79,7 +80,7 @@ public class PlayerStats : MonoBehaviour
 
         if (projRef)
         {
-            if (InvincibilityDuration > 0) {}
+            if (InvincibilityDuration > 0) { }
             else if (ShieldCount > 0)
             {
                 ShieldCount--;
@@ -88,7 +89,7 @@ public class PlayerStats : MonoBehaviour
             {
                 UpdateHealth(-projRef.Damage);
             }
-            
+
             Destroy(projRef.gameObject);
         }
     }

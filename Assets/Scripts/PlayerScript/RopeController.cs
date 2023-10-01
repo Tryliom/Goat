@@ -17,6 +17,7 @@ public class RopeController : MonoBehaviour
     private void Awake()
     {
         _rope.AnchoringMode = AnchoringMode.None;
+        _currentMaxLength = _ropeMaxLength;
     }
 
     // Start is called before the first frame update
@@ -28,10 +29,10 @@ public class RopeController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_piece.Length >= _ropeMaxLength)
+        if (_piece.Length >= _currentMaxLength)
         {
             _rope.AnchoringMode = AnchoringMode.ByBackEnd;
-            _currentMaxLength =
+            _currentMaxLength = _ropeMaxLength;
         }
     }
 }

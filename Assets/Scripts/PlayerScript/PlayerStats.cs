@@ -49,14 +49,14 @@ public class PlayerStats : MonoBehaviour
         
         if (_healthTimer >= _healthRegenFrequency && currentHealth < maxHealth)
         {
-            currentHealth += _healthRegenAmount;
-            OnHealthChanging?.Invoke(this);
+            UpdateHealth(_healthRegenAmount);
             _healthTimer = 0f;
         }
 
         if (currentHealth > maxHealth)
         {
             currentHealth = maxHealth;
+            OnHealthChanging?.Invoke(this);
         }
     }
 
@@ -66,9 +66,14 @@ public class PlayerStats : MonoBehaviour
 
         if (projRef)
         {
-            currentHealth -= projRef.Damage;
-            OnHealthChanging?.Invoke(this);
+            UpdateHealth(-projRef.Damage);
             Destroy(projRef.gameObject);
         }
+    }
+
+    public void UpdateHealth(int healthChange)
+    {
+        currentHealth += healthChange;
+        OnHealthChanging?.Invoke(this);
     }
 }

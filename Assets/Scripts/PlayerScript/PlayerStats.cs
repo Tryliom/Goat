@@ -28,6 +28,10 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI timeText;
 
+    [SerializeField] private GameObject gameOverMenu;
+    [SerializeField] private TextMeshProUGUI gameOverscoreText;
+    [SerializeField] private TextMeshProUGUI gameOvertimeText;
+
     public int ShieldCount;
     public float InvincibilityDuration;
     public float ExtendRopeDuration;
@@ -44,13 +48,22 @@ public class PlayerStats : MonoBehaviour
         Timer += Time.deltaTime;
         _scoreTimer += Time.deltaTime;
         TimeSpan tempsSpan = TimeSpan.FromSeconds(Timer);
-        timeText.text = "Time: " + string.Format("{0:00}:{1:00}", tempsSpan.Minutes, tempsSpan.Seconds);
         if (_scoreTimer >= 1.2f)
         {
             Score += 100;
             _scoreTimer = 0;
         }
-        scoreText.text = "Score: " + Score.ToString("000000");
+
+        if (currentHealth <= 0)
+        {
+            gameOverMenu.SetActive(true);
+            Time.timeScale = 0f;
+            gameOvertimeText.text = "Time: " + string.Format("{0:00}:{1:00}", tempsSpan.Minutes, tempsSpan.Seconds);
+            gameOverscoreText.text = "Score: " + Score.ToString("000000");
+        }
+
+        timeText.text = "Time: " + string.Format("{0:00}:{1:00}", tempsSpan.Minutes, tempsSpan.Seconds);
+        scoreText.text = "Score:\n" + Score.ToString("000000");
 
         if (currentHealth < maxHealth)
         {

@@ -52,7 +52,7 @@ public class BonusManager : MonoBehaviour
 
     private void UpdateObjectInGame(BonusBase bonus)
     {
-        _isAnObjectInGame = false;
+        _isAnObjectInGame =  false;
         
         Destroy(bonus.gameObject);
     }

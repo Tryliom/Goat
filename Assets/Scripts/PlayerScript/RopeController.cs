@@ -15,9 +15,15 @@ public class RopeController : MonoBehaviour
 
     [SerializeField] private float _ropeForce = 20;
 
-    private Rigidbody _rigidbody;
+    private bool _mustApplyRopeForce = false;
     
     private float _currentMaxLength;
+
+    public bool MustApplyRopeForce
+    {
+        get => _mustApplyRopeForce;
+        set => _mustApplyRopeForce = value;
+    }
 
     public float CurrentMaxLength
     {
@@ -39,7 +45,6 @@ public class RopeController : MonoBehaviour
 
     private void Awake()
     {
-        _rigidbody = GetComponent<Rigidbody>();
         _rope.AnchoringMode = AnchoringMode.None;
         _currentMaxLength = _initialMaxLength;
     }
@@ -53,21 +58,22 @@ public class RopeController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_piece.Length > _currentMaxLength)
-        {
-            var v = _rope.BackEnd.transform.position - gameObject.transform.position;
-            var dir = v.normalized;
-
-            if (_rigidbody.velocity.magnitude < 50)
-            {
-                _rigidbody.AddForce(dir * _ropeForce);
-            }
-        }
-        
-        // if (_piece.Length >= _currentMaxLength && _rope.AnchoringMode == AnchoringMode.None)
+        // if (_mustApplyRopeForce)
         // {
-        //     _rope.AnchoringMode = AnchoringMode.ByBackEnd;
-        //     _currentMaxLength = _initialMaxLength;
+        //     var v = _rope.BackEnd.transform.position - gameObject.transform.position;
+        //     var dir = v.normalized;
+        //
+        //     transform.position += dir * (_ropeForce * Time.deltaTime);
         // }
+        
+        // Debug.Log(_currentMaxLength);
+        // Debug.Log(_rope.AnchoringMode);
+        
+        if (_piece.Length >= _currentMaxLength && _rope.AnchoringMode == AnchoringMode.None)
+        {
+            _rope.AnchoringMode = AnchoringMode.ByBackEnd;
+            //_currentMaxLength = _initialMaxLength;
+            _mustApplyRopeForce = false;
+        }
     }
 }

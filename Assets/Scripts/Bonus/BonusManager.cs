@@ -29,8 +29,6 @@ public class BonusManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(_isAnObjectInGame);
-        
         if (!_isAnObjectInGame)
         {
             _elapsedTime += Time.deltaTime;
@@ -38,7 +36,7 @@ public class BonusManager : MonoBehaviour
 
         if (_elapsedTime >= _bonusSpawnFrequency)
         {
-            int rndIdx = Random.Range(1, _bonus.Count);
+            int rndIdx = Random.Range(2, _bonus.Count);
 
             var rndPos = new Vector3(Random.Range(xMin, xMax), 1f, Random.Range(zMin, zMax));
             

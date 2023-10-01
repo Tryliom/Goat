@@ -36,7 +36,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1.5, y: 0.3}
+  m_SizeDelta: {x: 1.5, y: 0.15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &103456672
 CanvasRenderer:
@@ -94,7 +94,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1210800506
 RectTransform:
   m_ObjectHideFlags: 0
@@ -243,7 +243,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1.5, y: 0.3}
+  m_SizeDelta: {x: 1.5, y: 0.15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1906941868
 CanvasRenderer:
@@ -281,7 +281,7 @@ MonoBehaviour:
   m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
-  m_FillOrigin: 0
+  m_FillOrigin: 1
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
 --- !u!1 &2162592926309483456
@@ -304,6 +304,7 @@ GameObject:
   - component: {fileID: 802000628}
   - component: {fileID: 1340758178}
   - component: {fileID: 6188935020157541565}
+  - component: {fileID: 214635532}
   m_Layer: 2
   m_Name: Goat
   m_TagString: Player
@@ -485,6 +486,8 @@ MonoBehaviour:
   Score: 0
   scoreText: {fileID: 0}
   timeText: {fileID: 0}
+  ShieldCount: 0
+  InvincibilityDuration: 0
 --- !u!138 &802000628
 FixedJoint:
   m_ObjectHideFlags: 0
@@ -526,6 +529,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.47124958, y: 1.0234792, z: 1.4634624}
   m_Center: {x: 0.0071451664, y: -0.45015228, z: -0.50424266}
+--- !u!114 &214635532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2162592926309483456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be455976e9229354f88231e4bf473eb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rope: {fileID: 0}
+  _piece: {fileID: 0}
+  _initialMaxLength: 5
+  _ropeForce: 100
 --- !u!1 &3059685116449295940
 GameObject:
   m_ObjectHideFlags: 0

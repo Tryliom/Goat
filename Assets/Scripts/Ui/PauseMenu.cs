@@ -2,13 +2,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class Menu : MonoBehaviour
+public class PauseMenu : MonoBehaviour
 {
     [Header("Menus")]
-    [SerializeField] private GameObject _mainMenu;
+    [SerializeField] private GameObject _menu;
     [SerializeField] private GameObject _controlsMenu;
     [SerializeField] private GameObject _settingsMenu;
-    [SerializeField] private GameObject _creditsMenu;
 
     [Header("Sliders")]
     [SerializeField] private Slider _sliderGlobalAudio;
@@ -25,16 +24,28 @@ public class Menu : MonoBehaviour
     
     private bool _disableInput;
 
-    private void Start()
+    private void OnEnable()
     {
+        _disableInput = false;
+        
         _sliderGlobalAudio.value = _audioData.GlobalVolume;
         _sliderMusicAudio.value = _audioData.MusicVolume;
         _sliderSoundAudio.value = _audioData.SoundVolume;
         
-        _musicPlayer.PlayMenu();
+        _musicPlayer.Pause(0.5f);
+        
+        Time.timeScale = 0f;
         
         DisableAll();
-        _mainMenu.SetActive(true);
+        _menu.SetActive(true);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            ToGame();
+        }
     }
 
     public void ToGame()
@@ -42,23 +53,17 @@ public class Menu : MonoBehaviour
         if (_disableInput) return;
         
         _disableInput = true;
-        _transitionScreen.FadeIn(0.5f);
-        _musicPlayer.Pause(0.5f);
-        
-        Invoke(nameof(LoadGame), 1f);
-    }
-
-    private void LoadGame()
-    {
-        SceneManager.LoadScene("Game");
+        Time.timeScale = 1f;
+        _musicPlayer.Resume(0.5f);
+        gameObject.SetActive(false);
     }
     
-    public void ToMainMenu()
+    public void ToMenu()
     {
         if (_disableInput) return;
         
         DisableAll();
-        _mainMenu.SetActive(true);
+        _menu.SetActive(true);
         
         _soundPlayer.PlaySound(SoundType.ButtonClick);
     }
@@ -83,28 +88,31 @@ public class Menu : MonoBehaviour
         _soundPlayer.PlaySound(SoundType.ButtonClick);
     }
     
-    public void ToCredits()
+    public void ToMainMenu()
     {
         if (_disableInput) return;
         
-        DisableAll();
-        _creditsMenu.SetActive(true);
+        _disableInput = true;
         
         _soundPlayer.PlaySound(SoundType.ButtonClick);
+        _transitionScreen.FadeIn(0.5f);
+        _musicPlayer.Pause(0.5f);
+        
+        Invoke(nameof(LoadMainMenu), 1f);
     }
     
-    public void Exit()
+    private void LoadMainMenu()
     {
-        Application.Quit();
+        SceneManager.LoadScene("MainMenu");
     }
 
     private void DisableAll()
     {
-        _mainMenu.SetActive(false);
+        _menu.SetActive(false);
         _controlsMenu.SetActive(false);
         _settingsMenu.SetActive(false);
-        _creditsMenu.SetActive(false);
     }
+    
     public void OnGlobalAudioChange()
     {
         _audioData.GlobalVolume = _sliderGlobalAudio.value;

@@ -3,12 +3,12 @@ using Unity.VisualScripting;
 
 public class BoomBonus : BonusBase
 {
-    public static event Action OnBoom;
+    public static event Action<BoomBonus> OnBoom;
     
     // Update is called once per frame
     public override void BonusEffect()
     {
-        OnBoom?.Invoke();
+        OnBoom?.Invoke(this);
         
         var projectiles = FindObjectsOfType<Projectile>();
 

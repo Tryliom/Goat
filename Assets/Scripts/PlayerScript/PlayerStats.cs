@@ -16,6 +16,9 @@ public class PlayerStats : MonoBehaviour
 
     [SerializeField] private ParticleSystem _onHitParticleSystem;
 
+    [SerializeField] private SkinnedMeshRenderer _goatMesh;
+    [SerializeField] private SkinnedMeshRenderer _invicibleMesh;
+    
     private RopeController _ropeCtrRef;
     
     private float _healthTimer;
@@ -40,8 +43,18 @@ public class PlayerStats : MonoBehaviour
     {
         currentHealth = maxHealth;
         _ropeCtrRef = FindObjectOfType<RopeController>();
+
+        InvincibilityBonus.OnInvicibility += ChangeMat;
+        _goatMesh.enabled = true;
+        _invicibleMesh.enabled = false;
     }
 
+    void ChangeMat()
+    {
+        _goatMesh.enabled = false;
+        _invicibleMesh.enabled = true;
+    }
+    
     // Update is called once per frame
     private void Update()
     {
@@ -89,6 +102,9 @@ public class PlayerStats : MonoBehaviour
             if (InvincibilityDuration <= 0)
             {
                 InvincibilityDuration = 0;
+
+                _goatMesh.enabled = true;
+                _invicibleMesh.enabled = false;
             }
         }
         

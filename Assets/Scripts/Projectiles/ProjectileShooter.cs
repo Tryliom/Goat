@@ -20,7 +20,12 @@ public class ProjectileShooter : MonoBehaviour
 
     [Header("Projectiles Ref")]
     [SerializeField] private LinearProj _linearProj;
-    [SerializeField] private LinearProj _burstProj;
+
+    [SerializeField] private List<LinearProj> _burstProjectiles;
+    
+    // [SerializeField] private LinearProj _burstProjBurger;
+    // [SerializeField] private LinearProj _burstProjCoke;
+    // [SerializeField] private LinearProj _burstProjFries;
     [SerializeField] private SeekerHeadProj _seekerHeadProj;
 
     [Header("Projectiles values")]
@@ -106,6 +111,7 @@ public class ProjectileShooter : MonoBehaviour
         x *= Mathf.Cos(angle);
         z *= Mathf.Sin(angle);
         
+
         return new Vector3(x, 0, z) + _center.position;
     }
     
@@ -135,7 +141,7 @@ public class ProjectileShooter : MonoBehaviour
     {
         for (var i = 0; i < _burstProjNbr; i++)
         {
-            Instantiate(_burstProj.gameObject, enemy.transform.position, Quaternion.identity);
+            Instantiate(_burstProjectiles[i], enemy.transform.position, Quaternion.identity);
             yield return new WaitForSeconds(_burstProjFrequency);
         }
         

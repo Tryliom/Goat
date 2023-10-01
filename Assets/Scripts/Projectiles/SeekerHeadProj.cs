@@ -24,7 +24,7 @@ public class SeekerHeadProj : Projectile
 
         _trajectory = direction * _speed;
 
-        Quaternion.LookRotation(_trajectory);
+        transform.rotation = Quaternion.LookRotation(_trajectory);
     }
 
     protected override void Anim()

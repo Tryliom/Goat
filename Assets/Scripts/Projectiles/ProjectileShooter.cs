@@ -92,9 +92,6 @@ public class ProjectileShooter : MonoBehaviour
             var pos = GetRandomPositionAroundCenter();
             
             Shoot(pos);
-            
-            //var targetPosition = Vector3.Lerp(farPosition, _center.position, (_spawnRadius - _attackRadius) / _spawnRadius);
-            //var enemy = Instantiate(_enemyPrefab.gameObject, farPosition, Quaternion.identity).GetComponent<Enemy>();
 
             _elapsedTime = 0f;
 
@@ -115,7 +112,7 @@ public class ProjectileShooter : MonoBehaviour
         z *= Mathf.Sin(angle);
         
 
-        return new Vector3(x, 0, z) + _center.position;
+        return new Vector3(x, 1.2f, z) + _center.position;
     }
     
     private void Shoot(Vector3 pos)

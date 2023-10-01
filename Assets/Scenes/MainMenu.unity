@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 262.38354, g: 325.1084, b: 430.30957, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2339,6 +2339,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: MusicPlayer
       objectReference: {fileID: 0}
+    - target: {fileID: 6836899634347129306, guid: e126cc1e5814df44388b7e1559ac3bcf,
+        type: 3}
+      propertyPath: _menu
+      value: 
+      objectReference: {fileID: 8300000, guid: 93820e41852c07746956232092a63290, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e126cc1e5814df44388b7e1559ac3bcf, type: 3}
 --- !u!114 &972444084 stripped

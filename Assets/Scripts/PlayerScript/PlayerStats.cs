@@ -54,8 +54,16 @@ public class PlayerStats : MonoBehaviour
 
     void ChangeMat()
     {
-        _goatMesh.enabled = false;
-        _invicibleMesh.enabled = true;
+        if (_goatMesh != null)
+        {
+            _goatMesh.enabled = false;
+        }
+
+        if (_invicibleMesh != null)
+        {
+            _invicibleMesh.enabled = true;
+        }
+        
     }
     
     // Update is called once per frame

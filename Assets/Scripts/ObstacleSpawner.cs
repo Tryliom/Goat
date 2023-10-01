@@ -36,7 +36,8 @@ public class ObstacleSpawner : MonoBehaviour
         }
         if (time > SpawnRate)
         {
-            Obstacle obs = Instantiate(ObstaclePrefab, new Vector3(Random.Range(xMin, xMax), 0, Random.Range(zMin, zMax)), Quaternion.Euler(0, 0, 90f)).GetComponent<Obstacle>();
+            Obstacle obs = Instantiate(ObstaclePrefab, 
+                new Vector3(Random.Range(xMin, xMax), 0.25f, Random.Range(zMin, zMax)), Quaternion.Euler(0, 0, 90f)).GetComponent<Obstacle>();
             obs.StayTime = Random.Range(2f, 5f);
             obs.AppearTime = Random.Range(0.5f, 1.5f);
             time = 0f;

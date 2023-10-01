@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,5 +28,10 @@ public class HealthBar : MonoBehaviour
         var vGoatCamera = Camera.main.transform.position - transform.position;
         var direction = vGoatCamera.normalized;
         transform.rotation = Quaternion.LookRotation(direction, Vector3.up);
+    }
+
+    private void OnDestroy()
+    {
+        PlayerStats.OnHealthChanging -= UpdateHealthBar;
     }
 }

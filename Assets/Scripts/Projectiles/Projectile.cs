@@ -13,6 +13,8 @@ public class Projectile : MonoBehaviour
 
     [SerializeField] protected float _speed = 5f;
     [SerializeField] protected int _damage;
+
+    [SerializeField] protected GameObject _explosion;
     
     protected Vector3 _trajectory;
 
@@ -68,7 +70,7 @@ public class Projectile : MonoBehaviour
     
     protected virtual void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.GetComponent<Obstacle>())
+        if (other.gameObject.GetComponent<Obstacle>() || other.gameObject.GetComponent<Player>())
         {
             switch (_projectileType)
             {
@@ -79,6 +81,8 @@ public class Projectile : MonoBehaviour
                     _soundPlayer.PlaySound(SoundType.BreakBird);
                     break;
             }
+            
+            Instantiate(_explosion.gameObject, transform.position, Quaternion.identity);
             
             Destroy(gameObject);
         }

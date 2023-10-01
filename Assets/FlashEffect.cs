@@ -33,7 +33,7 @@ public class FlashEffect : MonoBehaviour
 
     void ActivateFlash(BoomBonus b)
     {
-        if (b.GetComponent<BoomBonus>())
+        if (b.GetComponent<BoomBonus>() != null)
         {
             StartCoroutine(FlashEffectCoroutine());
         }

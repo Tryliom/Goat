@@ -59,9 +59,12 @@ public class Menu : MonoBehaviour
         if (_disableInput) return;
 
         DisableAll();
+        
         _mainMenu.SetActive(true);
 
         _soundPlayer.PlaySound(SoundType.ButtonClick);
+
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void ToSettings()

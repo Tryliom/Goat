@@ -18,27 +18,30 @@ public class PlayerStats : MonoBehaviour
     
     public static event Action<PlayerStats> OnHealthChanging;
 
-    public float Timer = 0f;
-    public float Score = 0;
-    private float scoreTimer = 0;
+    public float Timer;
+    public float Score;
+    private float _scoreTimer;
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI timeText;
+    
+    public int ShieldCount;
+    public float InvincibilityDuration;
 
-    void Start()
+    private void Start()
     {
         currentHealth = maxHealth;
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         Timer += Time.deltaTime;
-        scoreTimer += Time.deltaTime;
+        _scoreTimer += Time.deltaTime;
         timeText.text = "Time: " + Timer.ToString("F0");
-        if (scoreTimer >= 1.2f)
+        if (_scoreTimer >= 1.2f)
         {
             Score += 100;
-            scoreTimer = 0;
+            _scoreTimer = 0;
         }
         scoreText.text = "Score: " + Score.ToString("000000");
 
@@ -58,6 +61,16 @@ public class PlayerStats : MonoBehaviour
             currentHealth = maxHealth;
             OnHealthChanging?.Invoke(this);
         }
+        
+        if (InvincibilityDuration > 0)
+        {
+            InvincibilityDuration -= Time.deltaTime;
+            
+            if (InvincibilityDuration <= 0)
+            {
+                InvincibilityDuration = 0;
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -66,7 +79,16 @@ public class PlayerStats : MonoBehaviour
 
         if (projRef)
         {
-            UpdateHealth(-projRef.Damage);
+            if (InvincibilityDuration > 0) {}
+            else if (ShieldCount > 0)
+            {
+                ShieldCount--;
+            }
+            else
+            {
+                UpdateHealth(-projRef.Damage);
+            }
+            
             Destroy(projRef.gameObject);
         }
     }

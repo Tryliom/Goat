@@ -4,8 +4,9 @@ public class ObstacleSpawner : MonoBehaviour
 {
     public GameObject ObstaclePrefab;
 
-    public float SpawnRate = 3f;
-    private float time = 0f;
+    public float SpawnRate = 5f;
+    private float time = 4f;
+    private float spawnRateDecrementer = 0f;
 
     private float xMin;
     private float xMax;
@@ -24,6 +25,15 @@ public class ObstacleSpawner : MonoBehaviour
     void Update()
     {
         time += Time.deltaTime;
+        spawnRateDecrementer += Time.deltaTime;
+        if (spawnRateDecrementer >= 3f)
+        {
+            if (SpawnRate >= 1f)
+            {
+                SpawnRate -= 0.1f;
+            }
+            spawnRateDecrementer = 0f;
+        }
         if (time > SpawnRate)
         {
             Obstacle obs = Instantiate(ObstaclePrefab, new Vector3(Random.Range(xMin, xMax), 0, Random.Range(zMin, zMax)), Quaternion.Euler(0, 0, 90f)).GetComponent<Obstacle>();
@@ -31,5 +41,6 @@ public class ObstacleSpawner : MonoBehaviour
             obs.AppearTime = Random.Range(0.5f, 1.5f);
             time = 0f;
         }
+
     }
 }

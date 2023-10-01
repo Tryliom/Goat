@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ObstacleSpawner : MonoBehaviour
@@ -14,7 +12,7 @@ public class ObstacleSpawner : MonoBehaviour
     private float zMin;
     private float zMax;
 
-    void Start()
+    private void Start()
     {
         xMin = -transform.localScale.x * 3;
         xMax = transform.localScale.x * 3;
@@ -29,7 +27,7 @@ public class ObstacleSpawner : MonoBehaviour
         if (time > SpawnRate)
         {
             Instantiate(ObstaclePrefab, new Vector3(Random.Range(xMin, xMax), 0, 
-                Random.Range(zMin, zMax)), Quaternion.identity);
+                Random.Range(zMin, zMax)), Quaternion.Euler(0, 0, 90f));
             time = 0f;
         }
     }

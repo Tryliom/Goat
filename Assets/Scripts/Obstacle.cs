@@ -12,12 +12,12 @@ public class Obstacle : MonoBehaviour
     private Vector3 originalPosition;
     private Vector3 targetPosition;
 
-    void Start()
+    private void Start()
     {
         originalScale = transform.localScale;
-        targetScale = new Vector3(originalScale.x, originalScale.y + 1, originalScale.z);
+        targetScale = new Vector3(originalScale.x * 2f, originalScale.y, originalScale.z);
         originalPosition = transform.position;
-        targetPosition = new Vector3(originalPosition.x, originalPosition.y + 1, originalPosition.z);
+        targetPosition = new Vector3(originalPosition.x, originalPosition.y + 0.8f, originalPosition.z);
         
         StartCoroutine(AnimateAppearance());
     }

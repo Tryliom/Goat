@@ -11,7 +11,7 @@ public abstract class BonusBase : MonoBehaviour
     //public float bonusCollectableTimeMax;
 
     private MeshRenderer _renderer;
-    private CapsuleCollider _capsuleCol;
+    private SphereCollider _capsuleCol;
 
     //private float _timerDurationBonus = 0;
     private const float _timerDurationBonusEffect = 0;
@@ -28,7 +28,7 @@ public abstract class BonusBase : MonoBehaviour
     protected virtual void Awake()
     {
         _renderer = GetComponentInChildren<MeshRenderer>();
-        _capsuleCol = GetComponent<CapsuleCollider>();
+        _capsuleCol = GetComponent<SphereCollider>();
     }
 
     private void OnTriggerEnter(Collider other)

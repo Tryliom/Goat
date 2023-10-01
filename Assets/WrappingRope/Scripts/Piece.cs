@@ -103,6 +103,8 @@ namespace WrappingRopeLibrary.Scripts
             DontReorganizeWhenDestroy = false;
             
             OnSpawn?.Invoke(this);
+
+            GetComponent<MeshRenderer>().material = _ropeMat;
         }
 
 
@@ -123,7 +125,7 @@ namespace WrappingRopeLibrary.Scripts
                     }
                 }
                 _workMaterial = new Material(_material);
-                rend.sharedMaterial = _workMaterial;
+                rend.sharedMaterial = _ropeMat;
                 return true;
             }
             return false;
@@ -257,7 +259,9 @@ namespace WrappingRopeLibrary.Scripts
             GameObject pieceObject = _rope.GetPieceInstance();
             Piece newPiece = pieceObject.GetComponent<Piece>();
             if (newPiece == null) return;
+
             newPiece.Init(point, BackBandPoint, this, BackPiece, _rope, point.PositionInWorldSpace, PrevBackBandPoint, gameObject.layer, false);
+            newPiece.GetComponent<MeshRenderer>().material = _ropeMat;
             BackBandPoint = point;
             PrevBackBandPoint = point.PositionInWorldSpace;
             newPiece.IsCurrentlyBanded = true;
@@ -483,6 +487,8 @@ public class MaxIndex
 
 
         private bool _isDestroyed = false;
+        
+        [SerializeField] private Material _ropeMat;
 
         void OnDestroy()
         {

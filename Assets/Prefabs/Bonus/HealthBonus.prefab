@@ -180,6 +180,19 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 8713850313009091858}
   m_PrefabAsset: {fileID: 0}
+--- !u!135 &2843564469239906225
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7098798349979134811}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.37863818
+  m_Center: {x: 0, y: 0.12136176, z: 0}
 --- !u!114 &838127708609024768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,19 +208,6 @@ MonoBehaviour:
   bonusEffectDuration: 2
   _rotationSpeed: 30
   _healAmount: 20
---- !u!135 &2843564469239906225
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7098798349979134811}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.37863818
-  m_Center: {x: 0, y: 0.12136176, z: 0}
 --- !u!4 &7307565500093722352 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2126931215761619938, guid: 8bbb2b95a9c6b3d4881597ee01e7b9ec,

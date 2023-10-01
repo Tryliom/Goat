@@ -49,13 +49,13 @@ public abstract class BonusBase : MonoBehaviour
         // Move the object up and down using a sine wave
         if (!_isCollected)
         {
-            float yOffset = Mathf.Cos(Time.time) * 0.5f; // Adjust the amplitude as needed
+            float yOffset = Mathf.Cos(Time.time) * 0.3f; // Adjust the amplitude as needed
             transform.position = new Vector3(transform.position.x, InitialYPosition + yOffset, transform.position.z);
         }
 
         if (_isCollected)
         {
-            float yOffset = Mathf.Cos(Time.time) * 0.5f; // Adjust the amplitude as needed
+            float yOffset = Mathf.Cos(Time.time) * 0.3f; // Adjust the amplitude as needed
             transform.position = new Vector3(transform.position.x, InitialYPosition + yOffset, transform.position.z);
 
             // Handle the duration of the bonus effect

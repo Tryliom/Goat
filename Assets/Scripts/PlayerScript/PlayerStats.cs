@@ -35,11 +35,14 @@ public class PlayerStats : MonoBehaviour
     public int ShieldCount;
     public float InvincibilityDuration;
     public float ExtendRopeDuration;
+    
+    private SoundPlayer _soundPlayer;
 
     private void Start()
     {
         currentHealth = maxHealth;
         _ropeCtrRef = FindObjectOfType<RopeController>();
+        _soundPlayer = FindObjectOfType<SoundPlayer>();
     }
 
     // Update is called once per frame
@@ -128,6 +131,7 @@ public class PlayerStats : MonoBehaviour
             }
             else
             {
+                _soundPlayer.PlaySound(SoundType.GoatHurt);
                 UpdateHealth(-projRef.Damage);
                 _onHitParticleSystem.Play();
             }

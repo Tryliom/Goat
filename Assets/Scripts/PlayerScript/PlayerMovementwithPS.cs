@@ -10,7 +10,11 @@ public class PlayerMovementwithPS : MonoBehaviour
     private Rigidbody _rb;
     private Vector2 _movementVelocity;
     private PlayerStats _stats;
-    [SerializeField]private ParticleSystem walkingPS;
+    
+    [SerializeField]
+    private ParticleSystem walkingPS;
+    
+    private SoundPlayer _soundPlayer;
 
 
     private void Start()
@@ -18,6 +22,7 @@ public class PlayerMovementwithPS : MonoBehaviour
         _inputs = GetComponent<InputWrapper>();
         _rb = GetComponent<Rigidbody>();
         _stats = GetComponent<PlayerStats>();
+        _soundPlayer = FindObjectOfType<SoundPlayer>();
     }
 
     // Update is called once per frame
@@ -48,6 +53,8 @@ public class PlayerMovementwithPS : MonoBehaviour
             if (!walkingPS.isPlaying)
             {
                 walkingPS.Play();
+                _soundPlayer.PlaySound(SoundType.GoatWalk);
+                
             }
         }
         if (_inputs.move.y > 0.3f || _inputs.move.y < -0.3f)
@@ -55,6 +62,7 @@ public class PlayerMovementwithPS : MonoBehaviour
             if (!walkingPS.isPlaying)
             {
                 walkingPS.Play();
+                _soundPlayer.PlaySound(SoundType.GoatWalk);
             }
         }
     }

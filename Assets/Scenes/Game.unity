@@ -12836,6 +12836,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Goat
       objectReference: {fileID: 0}
+    - target: {fileID: 2162592926309483465, guid: ac9a49d7def891b4ab9c2f3f0da94b31,
+        type: 3}
+      propertyPath: _walkSoundFrequency
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 2162592926309483468, guid: ac9a49d7def891b4ab9c2f3f0da94b31,
         type: 3}
       propertyPath: m_RootOrder
@@ -16251,11 +16256,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SoundPlayer
-      objectReference: {fileID: 0}
-    - target: {fileID: 2819200007588241069, guid: d940e4fd3efb07a4a84fd1f1060adab4,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d940e4fd3efb07a4a84fd1f1060adab4, type: 3}

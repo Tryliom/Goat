@@ -56,12 +56,15 @@ public class ProjectileShooter : MonoBehaviour
     
     private float _elapsedTime;
     private float _diminTime;
+    
+    private SoundPlayer _soundPlayer;
 
     private void Awake()
     {
         _currentFrequency = Random.Range(_baseMinSpawnFrequency, _baseMaxSpawnFrequency);
         _lowerFrequency = _baseMinSpawnFrequency;
         _higherFrequency = _baseMaxSpawnFrequency;
+        _soundPlayer = FindObjectOfType<SoundPlayer>();
     }
     
     private void Update()
@@ -122,12 +125,14 @@ public class ProjectileShooter : MonoBehaviour
         switch (projType)
         {
             case (int) ProjectileType.Linear:
+                _soundPlayer.PlaySound(SoundType.ThrowChair);
                 Instantiate(_linearProj.gameObject, pos, Quaternion.identity);
                 break;
             case (int) ProjectileType.Burst:
                 StartCoroutine(SpawnBurstProjectilesWithCooldown(pos));
                 break;
             case (int) ProjectileType.SeekerHead:
+                _soundPlayer.PlaySound(SoundType.ThrowBird);
                 Instantiate(_seekerHeadProj.gameObject, pos, Quaternion.identity);
                 break;
             default:
@@ -139,6 +144,7 @@ public class ProjectileShooter : MonoBehaviour
     {
         for (var i = 0; i < _burstProjNbr; i++)
         {
+            _soundPlayer.PlaySound(SoundType.ThrowChair);
             Instantiate(_burstProjectiles[i], pos, Quaternion.identity);
             yield return new WaitForSeconds(_burstProjFrequency);
         }

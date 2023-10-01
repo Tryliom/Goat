@@ -20,6 +20,8 @@ public abstract class BonusBase : MonoBehaviour
     [SerializeField] private float _rotationSpeed = 30f;
 
     private const float InitialYPosition = 1f;
+    
+    private SoundPlayer _soundPlayer;
 
     public event Action<BonusBase> OnBonusDestroy;
 
@@ -28,7 +30,12 @@ public abstract class BonusBase : MonoBehaviour
     protected virtual void Awake()
     {
         _renderer = GetComponentInChildren<MeshRenderer>();
+
         _capsuleCol = GetComponent<SphereCollider>();
+
+
+        _soundPlayer = FindObjectOfType<SoundPlayer>();
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -39,6 +46,7 @@ public abstract class BonusBase : MonoBehaviour
             _renderer.enabled = false;
             _capsuleCol.enabled = false;
             _isCollected = true;
+            _soundPlayer.PlaySound(SoundType.Bonus);
         }
     }
     
